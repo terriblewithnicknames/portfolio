@@ -4,7 +4,7 @@ This project is a technical writing portfolio. The repository contains writing s
 
 So far, most of my experience as a technical writer has been associated with internal documentation of my employers. Therefore, the writing samples I share here focus on topics I can speak on freely: my hobbies, ideas, and personal projects.
 
-Youcan find me on [LinkedIn](https://www.linkedin.com/in/andrii-halkin), or just [send me an email](mailto:xqzmusic@gmail.com).
+You can find me on [LinkedIn](https://www.linkedin.com/in/andrii-halkin) or just [send me an email](mailto:xqzmusic@gmail.com).
 
 ## Contents
 
