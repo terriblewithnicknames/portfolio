@@ -7,6 +7,8 @@ moredocs: false
 
 My name is Andrii, and this site is my technical writing portfolio. It contains writing samples that cover technical and conceptual topics with the sole purpose of demonstrating my professional skills.
 
+Feel free to visit my [GitHub](https://github.com/terriblewithnicknames), [LinkedIn](https://www.linkedin.com/in/andrii-halkin), or [send me an email](mailto:xqzmusic@gmail.com).
+
 ## Contents
 
 - Product documentation samples
