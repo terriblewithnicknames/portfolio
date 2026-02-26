@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My site</title>
+    <link>http://localhost:1313/samples/guides/</link>
+    <description>Recent content on My site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/samples/guides/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Modelling a printable wheel for a scale car</title>
+      <link>http://localhost:1313/samples/guides/guide-1/</link>
+      <pubDate>Sun, 25 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/guides/guide-1/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Aftermarket wheels are one of the most common ways to make your scale car model stand out. While there are dozens of manufacturers of aftermarket parts and hundreds of detail-up kits, it is still easy to stumble upon cool real-world wheels that nobody sells in scale.&lt;/p&gt;&#xA;&lt;p&gt;Using a popular &lt;a href=&#34;https://www.work-wheels.co.jp/en/search/detail/98/&#34;&gt;Work Meister L1 3P 19 inch wheel&lt;/a&gt; as an example, I want this article to help scale car enthusiasts learn how to model wheels, moving from a reference picture to an STL file.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

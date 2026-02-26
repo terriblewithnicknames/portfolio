@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on My site</title>
+    <link>http://localhost:1313/samples/blog/</link>
+    <description>Recent content in Blogs on My site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/samples/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I would&#39;ve mixed it better on analog</title>
+      <link>http://localhost:1313/samples/blog/blog-1/</link>
+      <pubDate>Sat, 15 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/blog/blog-1/</guid>
+      <description>&lt;p&gt;The rapid evolution of technology allowed personal computers to gradually replace numerous task-specific machines, including those used in music production. As soon as it became possible, the concept of a recording studio got reimagined as a DAW (Digital Audio Workstation), packing almost all your fancy studio gear into a single shortcut on your computer screen. The ever-growing market of VST plugins saturated the picture even more, offering more virtual instruments and effects you knew existed. More often than not, musicians and producers began using state-of-the-art mixing consoles and gear racks as laptop stands.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

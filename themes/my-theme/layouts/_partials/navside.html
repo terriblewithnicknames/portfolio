@@ -1,0 +1,36 @@
+<div id="navside">
+  {{ if .Params.Moredocs }}
+    <div class="navside-section">In this section</div>
+    <ul class="navside-list">
+      <li class="navside-item">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+      </li>
+      {{ range .Pages }}
+        <li class="navside-item">
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+    <br>
+  {{ end }}
+  {{ if .Params.Toc }}
+    <div class="navside-section">On this page</div>
+    <ul class="navside-list">
+      {{ $s := newScratch }}
+      {{ $s.Add "minLevel" 99 }}
+      {{ with .Fragments }}
+        {{ partial "toc_level.html" . }}
+      {{ end }}
+    {{ end }}
+  </ul>
+  {{ if .Params.Toc2 }}
+    <div class="navside-section">On this page</div>
+    <ul class="navside-list">
+      {{ $s := newScratch }}
+      {{ $s.Add "minLevel" 99 }}
+      {{ with .Fragments }}
+        {{ partial "toc_level2.html" . }}
+      {{ end }}
+    {{ end }}
+  </ul>
+</div>

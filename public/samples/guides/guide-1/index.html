@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+  <html lang="en-us" dir="ltr">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
+    
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+</head>
+
+  </head>
+  <body><div class="navtop-wrapper">
+  
+    <nav class="navtop">
+      
+        
+          <a href="/">Home</a>
+        
+      
+        
+          <a href="/samples/">Writing samples</a>
+        
+      
+        
+          <a href="/resume/">Resume</a>
+        
+      
+        
+          <a href="/about/">About</a>
+        
+      
+    </nav>
+  </div>
+
+  <div id="t-anch"></div>
+    <div class="content-wrapper">
+        
+        <div class="doc-container">
+          
+          <h1 class="doc-title">Modelling a printable wheel for a scale car</h1>
+          
+            <div class="publish-date"><p>Last update: January 25, 2026</p></div> 
+          
+            <h1 id="introduction">Introduction</h1>
+<p>Aftermarket wheels are one of the most common ways to make your scale car model stand out. While there are dozens of manufacturers of aftermarket parts and hundreds of detail-up kits, it is still easy to stumble upon cool real-world wheels that nobody sells in scale.</p>
+<p>Using a popular <a href="https://www.work-wheels.co.jp/en/search/detail/98/">Work Meister L1 3P 19 inch wheel</a> as an example, I want this article to help scale car enthusiasts learn how to model wheels, moving from a reference picture to an STL file.</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_2.png"
+    alt="A picture of the basic version of the model imported as an STL file into a slicer software" width="100%"><figcaption>
+      <p><em>Final model (Basic, merged) - Front view</em></p>
+    </figcaption>
+</figure>
+
+<p>Please note that this tutorial <strong>does not</strong> cover:</p>
+<ul>
+<li>Polygonal modelling techniques.</li>
+<li>Advanced CAD modelling techniques.</li>
+<li>Topology optimization for rendering, animation, or games. The result is a waterproof STL file intended to become a physical object.</li>
+<li>3D printing process. For guidance on printing, refer to the user manual supplied with your printer, or use a 3rd-party 3D printing service.</li>
+</ul>
+<h1 id="prerequisites">Prerequisites</h1>
+<p>To successfully follow this guide, you will need:</p>
+<ol>
+<li>
+<p>Basic understanding of geometry and CAD modelling principles.</p>
+</li>
+<li>
+<p>A CAD modelling tool. Preferably, <a href="https://www.plasticity.xyz/">Plasticity</a>, but the same techniques work in other CAD tools, like Fusion360 or SolidWorks.</p>
+</li>
+<li>
+<p>A slicer tool of your choice to ensure the exported model is ready for print. I will be using <a href="https://ultimaker.com/software/ultimaker-cura/">UltiMaker Cura</a>.</p>
+</li>
+</ol>
+<h2 id="tools-and-commands">Tools and commands</h2>
+<p>Instructions provided in this doc refer to the following Plasticity commands/operations and tools. Feel free to check the official Plasticity documentation for additional guidance:</p>
+<p>Tools:</p>
+<ul>
+<li><a href="https://doc.plasticity.xyz/sketch/bridge-curve">Bridge curve</a></li>
+<li><a href="https://doc.plasticity.xyz/tool/center-circle.en">Center circle</a></li>
+<li><a href="https://doc.plasticity.xyz/tool/sketching-essentials.en#use-knife-mode">Knife mode</a></li>
+<li><a href="https://doc.plasticity.xyz/tool/line">Line</a></li>
+<li><a href="https://doc.plasticity.xyz/tool/polygon.en">Regular polygon</a></li>
+</ul>
+<p>Commands:</p>
+<ul>
+<li><a href="https://doc.plasticity.xyz/solid/boolean.en">Boolean</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/delete-redundant-topology#delete-redundant-topology-solid">Delete redundant topology</a></li>
+<li><a href="https://doc.plasticity.xyz/common/duplicate.en">Duplicate</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/extrude.en">Extrude</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/fillet-shell">Fillet</a></li>
+<li><a href="https://doc.plasticity.xyz/plasticity-essentials/outliner.en#group-objects">Group</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/imprint-curve-body">Imprint</a></li>
+<li><a href="https://doc.plasticity.xyz/sketch/join">Join</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/loft.en">Loft</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/match-face.en">Match face</a></li>
+<li><a href="https://doc.plasticity.xyz/common/mirror.en">Mirror</a></li>
+<li><a href="https://doc.plasticity.xyz/common/move.en">Move</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/offset-edge.en">Offset</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/pipe.en">Pipe</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/offset-face.en#basic-usage">Push</a></li>
+<li><a href="https://doc.plasticity.xyz/common/radial-array">Radial array</a></li>
+<li><a href="https://doc.plasticity.xyz/plasticity-essentials/outliner.en#rename-objects">Rename</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/revolve.en">Revolve</a></li>
+<li><a href="https://doc.plasticity.xyz/common/scale">Scale</a></li>
+<li><a href="https://doc.plasticity.xyz/plasticity-essentials/operating-the-3d-viewport">Switch view</a></li>
+<li><a href="https://doc.plasticity.xyz/sketch/trim.en">Trim</a></li>
+<li><a href="https://doc.plasticity.xyz/solid/unjoin-faces">Unjoin</a></li>
+</ul>
+<h1 id="preparation">Preparation</h1>
+<p>Before we get to modelling, let me share a few conclusions that my scale modelling journey led me to.</p>
+<h2 id="decide-on-the-scale">Decide on the scale</h2>
+<p>Decide on the scale of the model before actually modelling it. It is always easier to build correct shapes from scratch than refit the existing geometry.</p>
+<p>In this tutorial, we are going with a <strong>1/24</strong> scale.</p>
+<h2 id="set-goals">Set goals</h2>
+<p>Aside from a few real-world constraints, there are little to no rules to hobby modelling. To follow a reference meticulously, deviate from it here and there, or not use it at all - is up to you. However, like in any other craft, it is instrumental to ensure that every decision you make gets you closer to the goals set for the model.</p>
+<p>The goals we set for our model are:</p>
+<ul>
+<li>Be scale-accurate to fit any car model in the same scale.</li>
+<li>Resemble the original product as closely as possible.</li>
+<li>Respect 3D printing constraints to ensure safe printing.</li>
+</ul>
+<p>Where possible, I will supply the step-by-step instructions with precise dimensions and tool/command settings. You can follow them if you want to reach these goals with me.</p>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        If a parameter/setting is not specified for a tool, operation, or command, leave it as is.
+      
+    </p>
+    
+  </blockquote>
+<h2 id="balance-details">Balance details</h2>
+<p>The right combination of printer and printing material can offer fascinating precision, helping achieve high resemblance to the original part. However, going above a certain level of detail is <strong>rarely justified</strong> in the most common car modelling scales (1/24, 1/18, 1/35, etc.). Depending on how a model (car body, wheel, engine kit, seat, and so on) is produced (diecast, resin molding, 3D printing, etc.), and how small its scale is, manufacturers can simplify the geometry and distort the model&rsquo;s proportions where the hardware requires or the customers accept.</p>
+<p>To increase your chances of a successful print:</p>
+<ul>
+<li>Avoid modelling geometry less than <strong>0.2mm</strong> in depth or wall thickness.
+Such surfaces and shapes tend to come out warped, rendering the model unusable.</li>
+<li>Don&rsquo;t detail geometry that won&rsquo;t be visible or useful.
+Traditionally, a car wheel is fixed on a wheel hub and wrapped in a tire. No one will see the inside of that wheel.</li>
+<li>When analyzing references, try to break the object into simple shapes. Model them first, then add details gradually.</li>
+<li>Slightly enhance the model features as the scale goes smaller.
+The smaller the object, the less apparent its curvature appears to the human eye.</li>
+</ul>
+<p>Be mentally prepared for your model not coming out perfect on the first try. Oftentimes, the sweet spot for the model&rsquo;s detail, fitment, and proportions is found through test prints. Test prints, printing defects, and other occasional hiccups are an <strong>essential</strong> part of 3D printing.</p>
+<p>A better understanding of real-world manufacturing practices will also help your models. The wheel chosen for this tutorial consists of 3 parts (hence &ldquo;3PIECE&rdquo; in the name). However, since scale allows for geometry simplification, we can disregard the non-functional parts of the wheel design and safely split the model into two parts: a <strong>disc</strong> and a <strong>barrel</strong>.</p>
+<figure class="indoc-img"><a href="https://apexwheels.com/blog/technical-discussion/3-piece-2-piece-and-1-piece-wheels-explained"><img src="/samples/guides/guide-1/tut_wheel_types.png"
+    alt="A picture of the common car wheel types" width="100%"></a><figcaption>
+      <p><em>Common car wheel types (from left to right): 3-piece, 2-piece, Monoblock</em></p>
+    </figcaption>
+</figure>
+
+<h2 id="find-references">Find references</h2>
+<p>To model an existing wheel, you will need a good reference picture of it in the right size and spec (the same wheel can come in different variants). Ideally, you want the wheel to be shot directly from the front. The less twisted the perspective, the better. Thankfully, the <a href="https://www.work-wheels.co.jp/en/search/detail/98/">official page</a> contains a lot of high-quality photos of the Meister L1 wheel we are about to model. Let&rsquo;s see what makes a good primary reference image.</p>
+<figure class="indoc-img"><a href="https://www.work-wheels.co.jp/img_save/main/58a513257fbfd.jpg"><img src="/samples/guides/guide-1/tut_ref_1.png"
+    alt="An angled photo of the Work Meister L1 wheel on a car" width="100%"></a><figcaption>
+      <p><em>Reference example 1</em></p>
+    </figcaption>
+</figure>
+
+<p>Here, a wheel is clearly seen, and the image is high quality. Yet the angle of the shot makes it hard to determine the wheel size and accurately trace the geometry of the spoke pattern.</p>
+<p>At the same time, though, the picture shows the rim profile, revealing details that frontal shots hide. Is the disc face flat, concave, or convex? Where, how much. How deep the disc sits in the barrel. On top of that, live pictures like this can help you keep the model&rsquo;s overall resemblance to reality in check.</p>
+<p>With the above in mind, this is not the best candidate for a primary reference.</p>
+<figure class="indoc-img"><a href="https://www.work-wheels.co.jp/img_save/main/5805bdcbd7548.jpg"><img src="/samples/guides/guide-1/tut_ref_2.jpg"
+    alt="A frontal photo of the Work Meister L1 wheel" width="100%"></a><figcaption>
+      <p><em>Reference example 2</em></p>
+    </figcaption>
+</figure>
+
+<p>In this example, however, you can clearly see that the wheel is shot from the front and centered almost perfectly. The size is right (according to the image description), nothing obstructs the geometry, and every front-facing detail is visible. Shots like this make it a lot easier to recreate the disc face accurately.</p>
+<p>This picture will be our primary reference. Click on the image to download it from the source.</p>
+<h2 id="set-dimensionsunits">Set dimensions/units</h2>
+<p>As we aim for precision, our 3D tool has to be set to millimeters (mm). To set Plasticity to mm:</p>
+<ol>
+<li>
+<p>Open Plasticity and start a new file.</p>
+</li>
+<li>
+<p>Navigate to the right sidebar (1).</p>
+</li>
+<li>
+<p>Expand the &ldquo;Units&rdquo; section (2) and set the fields:</p>
+<ul>
+<li>&ldquo;Units&rdquo; - &ldquo;Millimeter&rdquo;.</li>
+<li>&ldquo;Grid size&rdquo; - <strong>20</strong> or higher.</li>
+<li>&ldquo;Line every&rdquo; - <strong>1</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Expand the &ldquo;Grid&rdquo; section (3) and make sure the value is &ldquo;<strong>1 mm</strong>&rdquo;.</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_prep_1.png"
+	    alt="A picture of the right sidebar in Plasticity" width="50%">
+	</figure>
+
+</li>
+</ol>
+
+
+
+  <blockquote class="alert alert-info">
+    <p class="alert-heading">
+      👀
+      
+        It is also helpful to have <a href="https://doc.plasticity.xyz/plasticity-essentials/snap.en#object-snap">object snapping</a> enabled.
+      
+    </p>
+    
+  </blockquote>
+<h2 id="import-the-reference-image">Import the reference image</h2>
+<p>The easiest way to stay close to the original geometry is to rely on reference images. Let&rsquo;s import the primary reference image we previously selected and position it in the 3D viewport:</p>
+<ol>
+<li>
+<p>In Plasticity, switch the view to &ldquo;Top&rdquo;.</p>
+</li>
+<li>
+<p>Click the &ldquo;<a href="https://doc.plasticity.xyz/plasticity-essentials/file-menu">P-Menu</a>&rdquo; in the upper-left corner (1), then <strong>Import/Append</strong> (2). Alternatively, press <code>Ctrl+Shift+O</code>.</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_prep_2.png"
+	    alt="A picture of the P-Menu in Plasticity" width="50%">
+	</figure>
+
+</li>
+<li>
+<p>Select the image file and confirm the import. The image should appear positioned according to your current 3D viewport view.</p>
+</li>
+<li>
+<p>Create a center circle to represent the outer edge of the wheel:</p>
+<ul>
+<li>Center point - world origin.</li>
+<li>Diameter - <strong>21.6 mm</strong>.</li>
+<li>Vertex - on the Y axis.</li>
+</ul>
+</li>
+<li>
+<p>Move and scale the image so that the center of the wheel matches the world origin and the outer edge of the wheel matches the created circle.</p>
+</li>
+<li>
+<p>To keep the project organized, rename the created circle to &ldquo;Barrel outer edge&rdquo;.</p>
+</li>
+<li>
+<p>Optionally:</p>
+<ul>
+<li>To give yourself some extra space in the 3D viewport, move the image up/down along the Z axis.</li>
+<li>To prevent accidental edits, lock the image by clicking the lock icon next to it in the left sidebar.</li>
+<li>To have more comfortable image opacity, select the image, press <code>M</code> hotkey, tweak the &ldquo;Opacity&rdquo; value in the &ldquo;Material&rdquo; menu, and click <strong>OK</strong> to confirm.</li>
+</ul>
+</li>
+</ol>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_prep_4.png"
+    alt="A picture of the reference image imported into Plasticity" width="100%">
+</figure>
+</p>
+<h1 id="modelling-the-disc">Modelling the disc</h1>
+<p>Using the reference images, we can point out that the disc is mounted on the barrel from the back and has:</p>
+<ul>
+<li>A concave front face with a slightly angled side wall.</li>
+<li>A conical, rounded recess in the center of the front face, with holes inside: one for a center cap (aka center bore), 5 for the lug nuts.</li>
+<li>Six flat, identical spokes.</li>
+<li>Spoke cutouts, horizontally shaped like triangles with beveled edges; vertically, they get smaller toward the back of the disc.</li>
+<li>&ldquo;JWL&rdquo; and &ldquo;VIA&rdquo; manufacturing stamps on two of the spokes.</li>
+<li>&ldquo;WORK Wheels&rdquo; brand sticker on one of the spokes.</li>
+</ul>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        With rare exception, stickers are best recreated with waterslide decals, not geometry.
+      
+    </p>
+    
+  </blockquote>
+<h2 id="sketching-disc-profile">Sketching disc profile</h2>
+<p>In this section, we will sketch the disc revolved profile. It represents the disc center hub, front face, spokes, side wall, and the mating face (a part where the disc and barrel touch).</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_final.png"
+    alt="A right-view picture of the complete revolved profile of the disc in Plasticity" width="100%"><figcaption>
+      <p><em>Complete revolved profile of the disc</em></p>
+    </figcaption>
+</figure>
+
+<h3 id="front-surface">Front surface</h3>
+<p>Let&rsquo;s start with the front-facing line of the profile:</p>
+<ol>
+<li>
+<p>Switch the view to &ldquo;Top&rdquo;.</p>
+</li>
+<li>
+<p>Draw a straight line on the Y axis, placing the control points at the following spots in the reference image:</p>
+<ul>
+<li>World origin.</li>
+<li>Upper edge of the center bore.</li>
+<li>Lower edge of the center bore.</li>
+<li>Lower edge of the disc center recess.</li>
+<li>Upper edge of the disc center recess.</li>
+<li>Slightly above the upper edge of the disc side wall.</li>
+<li>Above the outer edge of the mounting bolts ring.</li>
+</ul>
+<p>The line should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_1.png"
+	    alt="A top-view picture of the base front polyline in Plasticity" width="100%">
+	</figure>
+</p>
+
+
+
+  <blockquote class="alert alert-info">
+    <p class="alert-heading">
+      👀
+      
+        <strong>Scale affects geometry - Example 1</strong>
+      
+    </p>
+    <p>Not all control points match the wheel curves in the reference. Some proportions have to be deliberately distorted to ensure the model looks good <strong>and</strong> prints without issues.</p>
+  </blockquote>
+</li>
+<li>
+<p>Switch the view to &ldquo;Right&rdquo;.</p>
+</li>
+<li>
+<p>Move the control points of the created polyline along the Z axis:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_2.png"
+	    alt="A right-view picture of the base front polyline in Plasticity" width="100%">
+	</figure>
+</p>
+<ul>
+<li>Points 1,2 - <strong>1.4 mm</strong> down.</li>
+<li>Points 3,4 - <strong>2 mm</strong> down.</li>
+<li>Point 5 - <strong>0.8 mm</strong> down.</li>
+</ul>
+</li>
+<li>
+<p>Create a duplicate line between points 6 and 7, then move it <strong>2.5 mm</strong> down on the Z axis.</p>
+</li>
+<li>
+<p>Connect point 6 with its duplicate (6(1)) with another straight line.</p>
+</li>
+<li>
+<p>Trim the original 6-7 line.</p>
+</li>
+<li>
+<p>Select all the line segments that are left and join them.</p>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_3.png"
+	    alt="A right-view picture of the complete front polyline in Plasticity" width="100%">
+	</figure>
+</p>
+
+
+
+  <blockquote class="alert alert-info">
+    <p class="alert-heading">
+      👀
+      
+        <strong>Scale affects geometry - Example 2</strong>
+      
+    </p>
+    <p>Angle of the side wall is too shallow to be noticed in the selected scale. Making the side wall flat will help us maintain safe wall thickness without drifting too far away from the reference.</p>
+  </blockquote>
+</li>
+<li>
+<p>Rename the line to &ldquo;Front surface&rdquo; and press <code>H</code> to hide it.</p>
+</li>
+</ol>
+<h3 id="rear-surface">Rear surface</h3>
+<p>Now, to the rear line of the profile - the back of the disc:</p>
+<ol>
+<li>
+<p>While in the &ldquo;Right&rdquo; view, draw a set of straight lines, starting at the world origin and moving along the Y axis. Every next line <strong>must</strong> begin at the previous line&rsquo;s last control point:</p>
+<ul>
+<li>Line 1-2 - <strong>3.3 mm</strong>.</li>
+<li>Line 2(1)-3 - <strong>0.4 mm</strong>.</li>
+<li>Line 3(1)-4 - <strong>3.6 mm</strong>.</li>
+<li>Line 4(1)-5 - <strong>0.35 mm</strong>.</li>
+<li>Line 5(1)-6 - <strong>1.85 mm</strong>.</li>
+</ul>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_4.png"
+	    alt="A picture of the base rear polyline in Plasticity" width="100%">
+	</figure>
+
+</li>
+<li>
+<p>Move the following lines and points on the Z axis:</p>
+<ul>
+<li>Line 1-2 - <strong>3.8 mm</strong> down.</li>
+<li>Line 3(1)-4 - <strong>1.2 mm</strong> down.</li>
+<li>Point 3(1) - <strong>0.8 mm</strong> down.</li>
+<li>Line 5(1)-6 - <strong>3.7 mm</strong> down.</li>
+</ul>
+</li>
+<li>
+<p>Connect the control points:</p>
+<ul>
+<li>2 and 3(1) - with a straight line.</li>
+<li>4 and 5(1) - start at control point 4 and draw a <strong>2 mm</strong> vertical line down, then draw another line to 5(1).</li>
+</ul>
+</li>
+<li>
+<p>Delete lines 2(1)-3 and 4(1)-5.</p>
+</li>
+<li>
+<p>Join the segments that are left and rename the line to &ldquo;Rear surface&rdquo;.</p>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_5.png"
+	    alt="A right-view picture of the complete rear polyline in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+</ol>
+<h3 id="joining-curves">Joining curves</h3>
+<p>Now, let&rsquo;s join the halves into a revolved profile:</p>
+<ol>
+<li>
+<p>Unhide the &ldquo;Front surface&rdquo; line.</p>
+</li>
+<li>
+<p>Connect both ends of the polylines with straight lines to form a closed contour of the revolved profile:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_6.png"
+	    alt="A right-view picture of the connected halves of the disc profile in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Group all lines, name the group &ldquo;Disc profile&rdquo;, and hide it.</p>
+</li>
+</ol>
+<h2 id="sketching-cutout">Sketching cutout</h2>
+<p>From the reference images, we know that the spoke cutouts get smaller at the back of the disc. To replicate that, we will split the cutout into two contours/edges: front and rear.</p>
+<h3 id="front-edge">Front edge</h3>
+<p>Let&rsquo;s start with the front edge of the cutout:</p>
+<ol>
+<li>
+<p>Switch the view to &ldquo;Top&rdquo;.</p>
+</li>
+<li>
+<p>Pick a cutout in the reference image. Preferably, the one that an axis splits in half. On either of the spokes surrounding the cutout, find a straight edge. Mark it with a line:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_1.png"
+	    alt="A picture of the base spoke cutout line in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Mirror the line on the X axis.</p>
+</li>
+<li>
+<p>Bridge two curves at vertices close to the center. Tweak the bridging curve so it matches the cutout edge in the reference:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_2.png"
+	    alt="A picture of the mirrored base spoke cutout lines in Plasticity" width="100%">
+	</figure>
+</p>
+
+
+
+  <blockquote class="alert alert-info">
+    <p class="alert-heading">
+      👀
+      
+        It&rsquo;s okay if the mirrored lines don&rsquo;t land on the opposite edges in the image exactly. In this sketch, we are chasing symmetry first and foremost.
+      
+    </p>
+    
+  </blockquote>
+</li>
+<li>
+<p>Create a center circle:</p>
+<ul>
+<li>Center point - world origin.</li>
+<li>Diameter - just below the edge of the disc side wall, or <strong>15.4 mm</strong>.</li>
+<li>Vertex - on the Y axis.</li>
+</ul>
+</li>
+<li>
+<p>Bridge one of the straight lines with the created circle. Tweak the bridging curve so it stays close to the cutout edge in the reference:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_3.png"
+	    alt="A picture of the bridged base spoke cutout lines in Plasticity" width="100%">
+	</figure>
+</p>
+
+
+
+  <blockquote class="alert alert-info">
+    <p class="alert-heading">
+      👀
+      
+        <strong>Scale affects geometry - Example 3</strong>
+      
+    </p>
+    <p>Cutouts sit close to the front edge of the side wall, forming a noticeable feature of the wheel design. If recreated 1:1, the side wall might turn out too thin for printing. One way to address that without losing the resemblance is to thicken the side wall and proportionally enlarge the cutout at the front.</p>
+  </blockquote>
+</li>
+<li>
+<p>Select the top two curves and mirror them on the X axis. Coinciding control points should form a closed contour.</p>
+</li>
+<li>
+<p>Join all curves into one and move it <strong>2mm</strong> up on the Z axis.</p>
+</li>
+<li>
+<p>Rename the curve to &ldquo;Front edge&rdquo;.</p>
+</li>
+</ol>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_4.png"
+    alt="A picture of the complete front spoke cutout curve in Plasticity" width="100%">
+</figure>
+</p>
+<h3 id="rear-edge">Rear edge</h3>
+<p>Though we are not dealing with polygons directly, it is still better to have a cleaner mesh than not. That is why we will create the rear edge of the cutout from the front one:</p>
+<ol>
+<li>
+<p>Duplicate the &ldquo;Front edge&rdquo; curve, rename it to &ldquo;Rear edge&rdquo;, and hide the original.</p>
+</li>
+<li>
+<p>Scale the &ldquo;Rear edge&rdquo; so that it follows the inner contour of the cutout in the reference image:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_5.png"
+	    alt="A picture of the complete rear spoke cutout curve in Plasticity" width="100%">
+	</figure>
+</p>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        It may take a few scale operations to get the shape right. Try matching the curves in stages, moving from the bottom to the top.
+      
+    </p>
+    
+  </blockquote>
+</li>
+<li>
+<p>Move the curve <strong>3mm</strong> down along the Z axis.</p>
+</li>
+<li>
+<p>With both cutout edges complete, group them, name the group &ldquo;Spoke cutout&rdquo;, and hide it.</p>
+</li>
+</ol>
+<h2 id="working-with-solid-bodies">Working with solid bodies</h2>
+<p>Let&rsquo;s transform sketches into the disc:</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_final_1.png"
+    alt="A picture of the complete basic version of the disc in Plasticity" width="100%"><figcaption>
+      <p><em>Complete disc (Basic version)</em></p>
+    </figcaption>
+</figure>
+
+<h3 id="revolving-the-profile">Revolving the profile</h3>
+<ol>
+<li>
+<p>Unhide the &ldquo;Disc profile&rdquo; group.</p>
+</li>
+<li>
+<p>Revolve the region that the profile outlines around the Z axis to form a solid.</p>
+</li>
+<li>
+<p>Rename the solid to &ldquo;Disc&rdquo; and delete redundant topology from it.</p>
+</li>
+<li>
+<p>Hide the &ldquo;Disc profile&rdquo; group.</p>
+</li>
+</ol>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_1.png"
+    alt="A picture of the base disc solid in Plasticity" width="100%">
+</figure>
+</p>
+<h3 id="creating-spokes">Creating spokes</h3>
+<p>Next, let&rsquo;s use the spoke cutout sketches to reveal spokes:</p>
+<ol>
+<li>
+<p>Unhide &ldquo;Spoke cutout&rdquo; group.</p>
+</li>
+<li>
+<p>Use the &ldquo;Radial array&rdquo; command on both cutout curves:</p>
+<ul>
+<li>Center point - world origin.</li>
+<li>Number of instances - <strong>6</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Imprint all cutout curves (original and duplicates) onto the &ldquo;Disc&rdquo; solid.</p>
+</li>
+<li>
+<p>Delete duplicate cutout curves and hide the &ldquo;Spoke cutout&rdquo; group.</p>
+</li>
+<li>
+<p>Select all faces that the imprinted cutout curves created on both sides of the &ldquo;Disc&rdquo; solid, unjoin, and delete them. &ldquo;Disc&rdquo; solid became a sheet.</p>
+</li>
+<li>
+<p>Pick a cutout and loft its front and back edges with a <strong>G0</strong> surface. Repeat for all cutouts.</p>
+</li>
+<li>
+<p>Select all sheets with <code>A</code> and join them into a solid. &ldquo;Disc&rdquo; is now solid again.</p>
+</li>
+<li>
+<p>With the basic shape of the disc complete, add fillets to the following edges:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Edge</th>
+          <th style="text-align: left">Fillet Shape</th>
+          <th style="text-align: left">Fillet Distance</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Lower edge of the center bore</td>
+          <td style="text-align: left">G2</td>
+          <td style="text-align: left"><strong>0.2mm</strong></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Lower edge of the disc center recess</td>
+          <td style="text-align: left">G2</td>
+          <td style="text-align: left"><strong>0.2mm</strong></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Upper edge of the disc center recess</td>
+          <td style="text-align: left">G2</td>
+          <td style="text-align: left"><strong>0.2mm</strong></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Front edges of spoke cutouts</td>
+          <td style="text-align: left">G2</td>
+          <td style="text-align: left"><strong>0.1mm</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_2.png"
+	    alt="A picture of the base disc solid with spoke cutouts and fillets in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Add support fillets to the following edges on the back of the disc:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Edge</th>
+          <th>Fillet Shape</th>
+          <th>Fillet Distance</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Outer edge of the wheel hub</td>
+          <td>G2</td>
+          <td><strong>0.3 mm</strong></td>
+      </tr>
+      <tr>
+          <td>Edge between spokes and side wall</td>
+          <td>G2</td>
+          <td><strong>0.2 mm</strong></td>
+      </tr>
+  </tbody>
+</table>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_3.png"
+	    alt="A picture of rear of the base disc solid in Plasticity, target edges highlighted" width="100%">
+	</figure>
+
+</li>
+</ol>
+<h3 id="adding-lug-nuts">Adding lug nuts</h3>
+<p>First, create lug nut holes:</p>
+<ol>
+<li>
+<p>Switch the view to &ldquo;Top&rdquo;.</p>
+</li>
+<li>
+<p>Create a center circle to outline the bolt pattern:</p>
+<ul>
+<li>Center point - world origin.</li>
+<li>Diameter - matches the center of a lug nut hole in the reference image, or <strong>4.55 mm</strong>.</li>
+<li>Vertex - on the Y axis.</li>
+</ul>
+</li>
+<li>
+<p>Create another center circle for a lug nut hole:</p>
+<ul>
+<li>Center point - vertex of the bolt pattern circle.</li>
+<li>Diameter - <strong>1.1 mm</strong>.</li>
+<li>Vertex - on the Y axis.</li>
+</ul>
+</li>
+<li>
+<p>Hide or delete the bolt pattern circle.</p>
+</li>
+<li>
+<p>Extrude the region that the lug nut hole circle creates <strong>2.5 mm</strong> down on the Z axis to get a cylinder.</p>
+</li>
+<li>
+<p>Hide or delete the lug nut hole circle.</p>
+</li>
+<li>
+<p>Use the &ldquo;Radial array&rdquo; command on the extruded cylinder:</p>
+<ul>
+<li>Center point - world origin.</li>
+<li>Number of instances - <strong>5</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Use the &ldquo;Boolean&rdquo; command to cut the lug nut holes in the disc:</p>
+<ul>
+<li>Target body - &ldquo;Disc&rdquo; solid.</li>
+<li>Tool bodies - lug nut hole cylinders.</li>
+<li>Operation - &ldquo;Diff&rdquo;.</li>
+<li>Keep tools - &ldquo;off&rdquo;.</li>
+</ul>
+</li>
+</ol>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        If you don&rsquo;t follow the dimensions precisely, make sure the lug nut holes cut at least <strong>~0.5 mm</strong> deep into the &ldquo;Disc&rdquo; solid.
+      
+    </p>
+    
+  </blockquote>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_4.png"
+    alt="A picture of the base disc solid with spoke cutouts, fillets, and lug nut holes in Plasticity" width="100%">
+</figure>
+</p>
+<p>Then, add lug nuts:</p>
+<ol>
+<li>
+<p>While in the &ldquo;Top&rdquo; view, pick a lug nut hole and create a regular polygon inside it:</p>
+<ul>
+<li>Center point - the lug nut hole center.</li>
+<li>Number of vertices - <strong>6</strong>.</li>
+<li>Size - <strong>0.95 mm</strong>.</li>
+<li>Orientation - on the Y axis.</li>
+</ul>
+</li>
+<li>
+<p>Extrude the region that the polygon creates <strong>0.5 mm</strong> up on the Z axis.</p>
+</li>
+<li>
+<p>Hide or delete the polygon curve.</p>
+</li>
+<li>
+<p>Using &ldquo;Knife&rdquo; mode, draw a center circle:</p>
+<ul>
+<li>Center point - center of the polygon&rsquo;s top face.</li>
+<li>Diameter - <strong>0.7 mm</strong>.</li>
+<li>Vertex - on the Y axis.</li>
+</ul>
+</li>
+<li>
+<p>Push the face that the circle created <strong>0.3 mm</strong> up on the Z axis, creating a cylinder.</p>
+</li>
+<li>
+<p>Add fillet to the upper edge of the created cylinder:</p>
+<ul>
+<li>Shape - G2.</li>
+<li>Distance - <strong>0.15 mm</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Connect the bottom face of the extruded polygon with the lug nut hole surface using the &ldquo;Match face&rdquo; command.</p>
+</li>
+<li>
+<p>Use the &ldquo;Radial array&rdquo; command on the extruded body:</p>
+<ul>
+<li>Center point - world origin.</li>
+<li>Number of instances - <strong>5</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Use the &ldquo;Boolean&rdquo; command to merge the disc and the lug nuts:</p>
+<ul>
+<li>Target body - &ldquo;Disc&rdquo; solid.</li>
+<li>Tool bodies - lug nuts solids.</li>
+<li>Operation - &ldquo;Union&rdquo;.</li>
+<li>Keep tools - &ldquo;off&rdquo;.</li>
+</ul>
+</li>
+</ol>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        The selected style of lug nuts is not obligatory. Should you replace them with something else, keep in mind the goals set for the model.
+      
+    </p>
+    
+  </blockquote>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_5.png"
+    alt="A picture of the base disc solid with spoke cutouts, fillets, and lug nuts in Plasticity" width="100%">
+</figure>
+</p>
+<h3 id="detailing-center-bore">Detailing center bore</h3>
+<p>Typically, the center bore is either empty or covered by a center cap.</p>
+<p>To model it empty:</p>
+<ol>
+<li>
+<p>Switch the view to &ldquo;Top&rdquo;.</p>
+</li>
+<li>
+<p>Offset the upper edge of the center bore. Distance - <strong>0.3 mm</strong>. This will create a new face in the center of the surface.</p>
+</li>
+<li>
+<p>Push the created face <strong>1 mm</strong> down on the Z axis.</p>
+</li>
+</ol>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_final_1.png"
+    alt="A picture of the complete basic version of the disc in Plasticity" width="100%">
+</figure>
+</p>
+<p>At this point, this wheel part is <strong>sufficiently detailed</strong> for the selected scale. If you are satisfied with the result, feel free to focus on the other part - the barrel.</p>
+<h3 id="optional-details">Optional details</h3>
+<p>If you want to go the extra mile, let&rsquo;s add some optional details: the manufacturing stamps and the center cap.</p>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        This section covers geometry outside the safe boundaries of 3D printing in 1/24 scale. How well these details print highly depends on the printer and printing material.
+      
+    </p>
+    
+  </blockquote>
+<p>To add the manufacturing stamps:</p>
+<ol>
+<li>
+<p>Hide everything but the primary reference image of the wheel.</p>
+</li>
+<li>
+<p>Outline the &ldquo;JWL&rdquo; and &ldquo;VIA&rdquo; stamps with lines.</p>
+</li>
+<li>
+<p>Join each contour and rename them to &ldquo;JWL&rdquo; and &ldquo;VIA&rdquo; respectively.</p>
+</li>
+<li>
+<p>Hide the reference image and unhide the &ldquo;Disc&rdquo; solid.</p>
+</li>
+<li>
+<p>Imprint the contours onto the spokes of the &ldquo;Disc&rdquo; solid. Hide both curves once done.</p>
+</li>
+<li>
+<p>Push faces the projected curves created <strong>0.08 mm</strong> down into the &ldquo;Disc&rdquo; solid.</p>
+</li>
+</ol>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_7.png"
+    alt="A close-up picture of the manufacturing stamps modeled on the disc in Plasticity" width="100%">
+</figure>
+</p>
+<p>To add the center cap:</p>
+<ol>
+<li>
+<p>Undo/remove the geometry that represents the empty center bore so that its face is flat.</p>
+</li>
+<li>
+<p>Push the center bore face <strong>0.15 mm</strong> down and hide the &ldquo;Disc&rdquo; solid.</p>
+</li>
+<li>
+<p>With the help of commands and techniques we used previously, sketch the cap profile and revolve it around the Z axis into a solid:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_cap_p_1.png"
+	    alt="A picture of the complete center cap revolved profile in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Group the sketch lines as &ldquo;Cap profile&rdquo; and hide it.</p>
+</li>
+<li>
+<p>Rename the solid to &ldquo;Cap&rdquo; and delete redundant topology from it.</p>
+</li>
+<li>
+<p>Snap the &ldquo;Cap&rdquo; solid to the center bore surface of the &ldquo;Disc&rdquo; solid.</p>
+</li>
+<li>
+<p>While in the &ldquo;Top&rdquo; view, import the below primary reference image:</p>
+<figure class="indoc-img"><a href="https://www.jdmconcept.com.au/part/work/meister-center-cap"><img src="/samples/guides/guide-1/tut_cap_ref_1.png"
+	    alt="A frontal close-up photo of the Work Meister center cap" width="100%"></a><figcaption>
+	      <p><em>Center cap primary reference</em></p>
+	    </figcaption>
+	</figure>
+
+<figure class="indoc-img"><a href="https://www.workwheelsuk.com/work-s1r-m1r-m13p-centre-cap.html"><img src="/samples/guides/guide-1/tut_cap_ref_2.png"
+	    alt="An angled close-up photo of the Work Meister center cap" width="100%"></a><figcaption>
+	      <p><em>Center cap secondary reference</em></p>
+	    </figcaption>
+	</figure>
+
+</li>
+<li>
+<p>Scale and center the imported image in relation to the &ldquo;Cap&rdquo; solid.</p>
+</li>
+<li>
+<p>Recreate the &ldquo;MEISTER&rdquo; logo and the surrounding grooves with lines:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_cap_p_2.png"
+	    alt="A picture of the center cap contours sketched in Plasticity" width="100%">
+	</figure>
+</p>
+
+
+
+  <blockquote class="alert alert-info">
+    <p class="alert-heading">
+      👀
+      
+        <strong>Scale affects geometry - Example 4</strong>
+      
+    </p>
+    <p>To increase the likelihood of the cap grooves being visible on the print, I slightly enhance them, while ignoring even smaller details, like the gap between the cap parts.</p>
+  </blockquote>
+</li>
+<li>
+<p>Join the lines into letters and group all the curves into a &ldquo;Logo&rdquo; group.</p>
+</li>
+<li>
+<p>Imprint all curves onto the &ldquo;Cap&rdquo; solid. Hide the &ldquo;Logo&rdquo; group once done.</p>
+</li>
+</ol>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        <strong>It may take a few tries</strong>
+      
+    </p>
+    <p>If a curve breaks upon projection, either recreate it to ensure correct normal orientation, or move curves a bit more apart, so that the projected vertices are not too close to each other.</p>
+  </blockquote>
+<ol start="12">
+<li>
+<p>Push the projected letters <strong>0.1 mm</strong> down into the &ldquo;Cap&rdquo; solid.</p>
+</li>
+<li>
+<p>Pipe the projected grooves:</p>
+<ul>
+<li>Vertex count - <strong>4</strong>.</li>
+<li>Section size - <strong>0.05 mm</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Use the &ldquo;Boolean - Union&rdquo; command to merge the &ldquo;Disc&rdquo; and the &ldquo;Cap&rdquo; solids.</p>
+</li>
+</ol>
+<p>With all optional details added, the disc should look like this:</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_final_2.png"
+    alt="A picture of the complete advanced version of the disc in Plasticity" width="100%"><figcaption>
+      <p><em>Complete disc (Advanced version)</em></p>
+    </figcaption>
+</figure>
+
+<h1 id="modelling-the-barrel">Modelling the barrel</h1>
+<p>From the reference pictures, we know that the barrel has:</p>
+<ul>
+<li>A step outer lip/outer rim slightly angled outwards.</li>
+<li>45 mounting bolts.</li>
+<li>A valve stem.</li>
+</ul>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        Valve stems are best modeled and printed separately. Making them a part of the wheel model complicates printing.
+      
+    </p>
+    
+  </blockquote>
+<h2 id="sketching-barrel-profile">Sketching barrel profile</h2>
+<p>In this section, we will sketch the barrel revolved profile to transform it into a solid body later. This profile represents the inner and outer surfaces of the barrel, including the outer lip and the mating face (a part where the disc and barrel touch).</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_final.png"
+    alt="A picture of the complete revolved profile of the barrel in Plasticity" width="100%"><figcaption>
+      <p><em>Complete revolved profile of the barrel</em></p>
+    </figcaption>
+</figure>
+
+<h3 id="inner-surface">Inner surface</h3>
+<p>To create the inner surface of the barrel:</p>
+<ol>
+<li>
+<p>Hide everything but the &ldquo;Barrel outer edge&rdquo; circle we created earlier.</p>
+</li>
+<li>
+<p>Switch the view to &ldquo;Right&rdquo;.</p>
+</li>
+<li>
+<p>Draw a set of straight lines, starting at the vertex of the &ldquo;Barrel outer edge&rdquo; circle and moving down on the Z axis. Every next line <strong>must</strong> begin at the previous line&rsquo;s last control point:</p>
+<ul>
+<li>Line 1-2 - <strong>0.2 mm</strong>.</li>
+<li>Line 2(1)-3 - <strong>0.2 mm</strong>.</li>
+<li>Line 3(1)-4 - <strong>1.3 mm</strong>.</li>
+<li>Line 4(1)-5 - <strong>0.3 mm</strong>.</li>
+<li>Line 5(1)-6 - <strong>1.4 mm</strong>.</li>
+<li>Line 6(1)-7 - <strong>1 mm</strong>.</li>
+<li>Line 7(1)-8 - <strong>7.6 mm</strong>.</li>
+</ul>
+<p>The line should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_1.png"
+	    alt="A picture of the base inner polyline of the barrel in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Move the following lines and control points on the Y axis:</p>
+<ul>
+<li>Line 1-2 - <strong>0.2 mm</strong> left.</li>
+<li>Line 3(1)-4 - <strong>0.8 mm</strong> left.</li>
+<li>Point 4 - <strong>0.1 mm</strong> left.</li>
+<li>Line 5(1)-6 - <strong>1.75 mm</strong> left.</li>
+<li>Point 5(1) - <strong>0.1 mm</strong> right.</li>
+<li>Line 6(1)-7 - <strong>2.6 mm</strong> left.</li>
+<li>Line 7(1)-8 - <strong>1.2 mm</strong> left.</li>
+</ul>
+</li>
+<li>
+<p>Trim or delete lines 2(1)-3 and 4(1)-5.</p>
+</li>
+<li>
+<p>Connect the remaining lines with more straight lines and join them all into one &ldquo;Inner surface&rdquo; polyline.</p>
+</li>
+</ol>
+<p>The result should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_2.png"
+    alt="A picture of the completed inner polyline of the barrel in Plasticity" width="100%">
+</figure>
+</p>
+<h3 id="outer-surface">Outer surface</h3>
+<p>To create the outer surface of the barrel, draw a straight line:</p>
+<ul>
+<li>Start point - vertex of the &ldquo;Barrel outer edge&rdquo; circle.</li>
+<li>Length - <strong>12 mm</strong> down on the Z axis.</li>
+</ul>
+<h3 id="joining-curves-1">Joining curves</h3>
+<p>Now, let&rsquo;s join the lines into a revolved profile:</p>
+<ol>
+<li>
+<p>Hide the &ldquo;Barrel outer edge&rdquo; circle.</p>
+</li>
+<li>
+<p>Connect both ends of the barrel surface polylines with straight lines to form a closed contour:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_3.png"
+	    alt="A right-view picture of the connected havles of the barrel profile in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Join all lines into a &ldquo;Barrel profile&rdquo; profile.</p>
+</li>
+<li>
+<p>Move the &ldquo;Barrel profile&rdquo; polyline <strong>2 mm</strong> up on the Z axis so that the mating faces fit with <strong>0.1 mm</strong> clearance:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_4.png"
+	    alt="A right-view picture of the disc and barrel profiles fitting together in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+</ol>
+<h2 id="working-with-solid-bodies-1">Working with solid bodies</h2>
+<p>Let&rsquo;s transform sketches into the barrel:</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_final.png"
+    alt="A picture of the complete barrel in Plasticity" width="100%"><figcaption>
+      <p><em>Complete barrel</em></p>
+    </figcaption>
+</figure>
+
+<h3 id="revolving-the-profile-1">Revolving the profile</h3>
+<ol>
+<li>Revolve the region that the barrel profile outlines around the Z axis to form a solid.</li>
+<li>Rename the solid to &ldquo;Barrel&rdquo; and delete redundant topology from it.</li>
+<li>Hide the &ldquo;Barrel profile&rdquo; polyline.</li>
+</ol>
+<p>The result should look like this:</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_1.png"
+    alt="A right-view picture of the connected havles of the barrel profile in Plasticity" width="100%">
+</figure>
+
+<ol start="4">
+<li>
+<p>With the basic shape of the barrel complete, add <strong>G2</strong> fillets to the following outer lip edges:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_2.png"
+	    alt="A picture of the barrel in Plasticity with the target edges higlighted" width="100%">
+	</figure>
+</p>
+<ul>
+<li>Edge 1 - <strong>0.2 mm</strong>.</li>
+<li>Edges 2, 3, 4 - <strong>0.3 mm</strong>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="adding-mounting-bolts">Adding mounting bolts</h3>
+<p>Start by creating one mounting bolt:</p>
+<ol>
+<li>
+<p>Switch the view to &ldquo;Top&rdquo;.</p>
+</li>
+<li>
+<p>Draw a reference line, connecting the inner and outer edges of the mounting bolts ring:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_3.png"
+	    alt="A close-up picture of the mounting bolts reference line in Plasticity" width="100%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Create a center circle to represent the base of a mounting bolt:</p>
+<ul>
+<li>Center point - midpoint of the previously created reference line.</li>
+<li>Diameter - <strong>0.6 mm</strong>.</li>
+<li>Vertex - on the Y axis.</li>
+</ul>
+<p>The circle should land on the surface of the &ldquo;Barrel&rdquo; solid.</p>
+</li>
+<li>
+<p>Hide or delete the previously created reference line.</p>
+</li>
+<li>
+<p>Extrude the region that the circle creates <strong>0.15 mm</strong> up on the Z axis into a cylinder and hide the base circle.</p>
+</li>
+<li>
+<p>Select the top face of the cylinder and set the &ldquo;Angle adjacent&rdquo; parameter in its &ldquo;Push Face&rdquo; context menu to <strong>25.00</strong>.</p>
+</li>
+<li>
+<p>Keep the face selected and extrude it <strong>0.2 mm</strong> up on the Z axis to get another cylinder.</p>
+</li>
+<li>
+<p>Add a fillet to the top edge of the extruded body: Shape - Conic, Distance - <strong>0.1 mm</strong>.</p>
+</li>
+<li>
+<p>Extrude the round face that the fillet created at the top of the cylinder <strong>0.15 mm</strong> down on the Z axis.</p>
+</li>
+</ol>
+<p>The bolt should look like this:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_4.png"
+    alt="A close-up picture of the mounting bolt model in Plasticity" width="100%">
+</figure>
+</p>
+<ol start="10">
+<li>
+<p>Use the &ldquo;Radial array&rdquo; command to multiply the created bolt and spread the duplicates evenly on the barrel:</p>
+<ul>
+<li>Center point - world origin.</li>
+<li>Number of instances - <strong>45</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Use the &ldquo;Boolean&rdquo; command to merge the barrel and the mounting bolts:</p>
+<ul>
+<li>Target body - &ldquo;Disc&rdquo; solid.</li>
+<li>Tool bodies - lug nuts solids.</li>
+<li>Operation - &ldquo;Union&rdquo;.</li>
+<li>Keep tools - &ldquo;off&rdquo;.</li>
+</ul>
+</li>
+</ol>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        The selected style of mounting bolts is not obligatory. Should you replace them with something else, keep in mind the goals set for the model.
+      
+    </p>
+    
+  </blockquote>
+<p>The result should look like this:</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_final.png"
+    alt="A picture of the complete barrel in Plasticity" width="100%"><figcaption>
+      <p><em>Complete barrel</em></p>
+    </figcaption>
+</figure>
+
+<p>At this point, this wheel part is <strong>sufficiently detailed</strong> for the selected scale. If you are satisfied with the result, feel free to focus on the other part - the disc.</p>
+<h1 id="exporting-the-complete-model">Exporting the complete model</h1>
+<p>With both the disc and the barrel complete, the wheel is ready for export. You can export the parts separately so that the model is easier to paint, or merge them into one solid so it&rsquo;s easier to print.</p>
+<p>If you want to merge the parts:</p>
+<ol>
+<li>
+<p>Duplicate the &ldquo;Disc&rdquo; and the &ldquo;Barrel&rdquo; solids and hide the originals.</p>
+</li>
+<li>
+<p>Close the gap between the duplicate solids using the &ldquo;Push&rdquo; or &ldquo;Match face&rdquo; command on their mating faces:
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_1.png"
+	    alt="A disc and barrel section in Plasticity with the clearance gap between them highlighted" width="100%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Use the &ldquo;Boolean - Union&rdquo; command to fuse the duplicate solids into one.</p>
+</li>
+<li>
+<p>Rename the fused solid to &ldquo;Assembly&rdquo;.</p>
+</li>
+</ol>
+<p>To export the solids (merged or not):</p>
+<ol>
+<li>
+<p>Select a solid you want to export.</p>
+</li>
+<li>
+<p>Click the &ldquo;<a href="https://doc.plasticity.xyz/plasticity-essentials/file-menu">P-Menu</a>&rdquo; in the upper-left corner (1), then <strong>Export</strong> (2). Alternatively, press <code>Ctrl+Shift+E</code>.
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_prep_3.png"
+	    alt="A picture of the P-Menu in Plasticity" width="50%">
+	</figure>
+</p>
+</li>
+<li>
+<p>Name the destination file, set the file type to &ldquo;STL&rdquo;, and click <strong>Save</strong> to confirm.</p>
+</li>
+<li>
+<p>Configure the export settings. Here are the settings that worked for me:</p>
+<ul>
+<li>Density - <strong>1.00</strong>.</li>
+<li>Edge angle tolerance - <strong>0.07</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Hit <strong>OK</strong>.</p>
+</li>
+</ol>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        It may take a few tries to get the result you want. Try different export settings and patterns (e.g., exporting through other tools, like Blender).
+      
+    </p>
+    
+  </blockquote>
+<p>Now, let&rsquo;s import the STL file into a slicer and check the model for defects. Usually, the slicer will highlight any issues with geometry and notify you about them as soon as the model is imported.</p>
+<p>The model we created imported without any issues or alerts. The generated mesh doesn&rsquo;t have visible defects, overlaps, wrinkles, or overhang surfaces that need supports.</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_2.png"
+    alt="A picture of the basic version of the model imported as an STL file into a slicer software" width="100%"><figcaption>
+      <p><em>Final model (Basic, merged) - Front view</em></p>
+    </figcaption>
+</figure>
+
+
+
+
+  <blockquote class="alert alert-info">
+    <p class="alert-heading">
+      👀
+      
+        The model is rotated <strong>45</strong> degrees on the X axis to mimic the position that the wheels are commonly printed in.
+      
+    </p>
+    
+  </blockquote>
+<p>On the back of the model, there are a couple of red areas - places where the model needs support to print properly. Depending on the disc complexity, even top spokes may require supports. In this case, though, the amount and placement of supported areas look acceptable.</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_3.png"
+    alt="A picture of the basic version of the model imported as an STL file into a slicer software" width="100%"><figcaption>
+      <p><em>Final model (Basic, merged) - Rear view</em></p>
+    </figcaption>
+</figure>
+
+<p>The same steps apply if you export the wheel in parts:</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_4.png"
+    alt="A picture of the advance version of the model imported as an STL file into a slicer software" width="100%"><figcaption>
+      <p><em>Final model (Advanced, split) - Front view</em></p>
+    </figcaption>
+</figure>
+
+<p>Once it is clear that the model has no issues at this stage, it is considered <strong>finished</strong> and ready for printing.</p>
+<p>Renders nicely too!</p>
+<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_5.png"
+    alt="A picture of the complete model rendered in a 3D software" width="100%">
+</figure>
+
+
+        </div>
+        <div class="c-3"><div id="navside">
+  
+  
+    <div class="navside-section">On this page</div>
+    <ul class="navside-list">
+      
+      
+      
+        
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#introduction">Introduction</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#prerequisites">Prerequisites</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#tools-and-commands">Tools and commands</a></div>
+  
+  
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#preparation">Preparation</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#decide-on-the-scale">Decide on the scale</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#set-goals">Set goals</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#balance-details">Balance details</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#find-references">Find references</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#set-dimensionsunits">Set dimensions/units</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#import-the-reference-image">Import the reference image</a></div>
+  
+  
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#modelling-the-disc">Modelling the disc</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#sketching-disc-profile">Sketching disc profile</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#front-surface">Front surface</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#rear-surface">Rear surface</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#joining-curves">Joining curves</a></div>
+  
+  
+
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#sketching-cutout">Sketching cutout</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#front-edge">Front edge</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#rear-edge">Rear edge</a></div>
+  
+  
+
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#working-with-solid-bodies">Working with solid bodies</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#revolving-the-profile">Revolving the profile</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#creating-spokes">Creating spokes</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#adding-lug-nuts">Adding lug nuts</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#detailing-center-bore">Detailing center bore</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#optional-details">Optional details</a></div>
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#modelling-the-barrel">Modelling the barrel</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#sketching-barrel-profile">Sketching barrel profile</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#inner-surface">Inner surface</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#outer-surface">Outer surface</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#joining-curves-1">Joining curves</a></div>
+  
+  
+
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#working-with-solid-bodies-1">Working with solid bodies</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#revolving-the-profile-1">Revolving the profile</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#adding-mounting-bolts">Adding mounting bolts</a></div>
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#exporting-the-complete-model">Exporting the complete model</a></div>
+  
+  
+
+      
+    
+  </ul>
+  
+  </ul>
+</div><div class="tt-w-1">
+    <div class="tt-w-2">
+        <div class="tt-bck-div"></div>
+        <a class="no-style" href="#t-anch"><button class="tt-b">to top</button></a>
+    </div>
+</div>
+        </div> 
+    </div><div id="footer-wrapper">
+    <div class="sm-buttons">
+        <div class="sm-b">
+            <a href="https://github.com/terriblewithnicknames/twsamples" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
+        </div>
+        <div class="sm-b">
+            <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/images/in-logo.png" height="25px"></a>
+        </div>
+    </div>
+</div></body>
+</html>

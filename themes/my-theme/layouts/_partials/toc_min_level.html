@@ -1,0 +1,7 @@
+{{ range .ctx.Headings }}
+  {{ if and (gt .Level 0) 
+            (lt .Level ($.s.Get "minLevel")) }}
+    {{ $.s.Set "minLevel" .Level }}
+  {{ end }}
+  {{ partial "toc_min_level.html" ( dict "ctx" . "s" $.s ) }}
+{{ end }}

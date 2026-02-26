@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My site</title>
+    <link>http://localhost:1313/samples/productdocs/</link>
+    <description>Recent content on My site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/samples/productdocs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Armadillo Product overview</title>
+      <link>http://localhost:1313/samples/productdocs/product-overview/</link>
+      <pubDate>Fri, 05 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/productdocs/product-overview/</guid>
+      <description>&lt;h1 id=&#34;what-is-armadillo&#34;&gt;What is Armadillo&lt;/h1&gt;&#xA;&lt;p&gt;Armadillo is a fictional taxi service operating in a futuristic yet down-to-earth setting of Sprawl City. Unlike its AI-driven competitors, Armadillo functions in a more classic way, offering human drivers and app-like user experience.&lt;/p&gt;&#xA;&lt;h1 id=&#34;who-is-it-for&#34;&gt;Who is it for&lt;/h1&gt;&#xA;&lt;p&gt;Armadillo is for people who want to reduce the presence of AI and technology in their daily lives. Whether it is a simple lack of trust, nostalgia, craving for human connection, or personal trauma, Armadillo is there to move you from point A to point B in a reliable, human way. No ads, no subscription fees.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

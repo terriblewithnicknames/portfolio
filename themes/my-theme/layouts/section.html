@@ -1,0 +1,52 @@
+{{ define "main" }}
+  <div id="t-anch"></div>
+  <div class="content-wrapper">
+      {{ if .Params.Bread }}
+        {{ partial "breadcrumbs.html" }}
+      {{ end }}    
+      <div class="doc-container">
+        <h1 class="doc-title">{{ .Title }}</h1>
+        {{ .Content }}
+        <hr class="ws-ds-hr">
+        <section class="ws-ds-sec">
+          <h2 class="ws-ds-h">/Product docs</h2>
+          <em class="ws-ds-sum">Your typical product documentation: overviews, API reference, quick start guides, etc.</em>
+          <p class="ws-ds-p">Samples in this section describe Armadillo - a <b>fictional</b> ride-hailing service I came up with for this portfolio.
+            <br><br>
+            Even though the product is made-up, all decisions around system design, data model, formats, protocols, documentation structure and requirements, implementation strategies, CX flows, and ~98% of other things related to "how it actually would be documented" are based on the real-world expectations and experience.</p>
+          {{ range (site.GetPage "productdocs").Pages.ByTitle }}
+            <div class="ws-ds-li-wrap">
+              <ul class="ws-ds-li"><div class="ws-ds-li-arrow">></div><a class="ws-ds-li-a" href="{{ .RelPermalink }}">{{ .Title }}</a></ul>
+            </div>
+              {{ end }}
+          {{ range (site.GetPage "apidocs").Pages.ByTitle }}
+            <div class="ws-ds-li-wrap">
+              <ul class="ws-ds-li"><div class="ws-ds-li-arrow">></div><a class="ws-ds-li-a" href="{{ .RelPermalink }}">{{ .Title }}</a></ul>
+            </div>
+            {{ end }}
+        </section>
+        <section class="ws-ds-sec">
+          <h2 class="ws-ds-h">/Guides</h2>
+          <em class="ws-ds-sum">How-to's and tutorials of different complexity.</em>
+          {{ range (site.GetPage "guides").Pages.ByTitle }}
+            <div class="ws-ds-li-wrap">
+              <ul class="ws-ds-li"><div class="ws-ds-li-arrow">></div><a href="{{ .RelPermalink }}">{{ .Title }}</a></ul>
+            </div>
+          {{ end }}
+        </section>        
+        <section class="ws-ds-sec">
+          <h2 class="ws-ds-h">/Blog posts</h2>
+          <em class="ws-ds-sum">Short reads built around an idea or a topic I had in mind.</em>
+          {{ range (site.GetPage "blog").Pages.ByTitle }}
+          <div class="ws-ds-li-wrap">
+              <ul class="ws-ds-li"><div class="ws-ds-li-arrow">></div><a href="{{ .RelPermalink }}">{{ .Title }}</a></ul>
+          </div>
+          {{ end }}
+        </section>
+      </div>
+      {{ if .Params.Totop }}
+        {{- partial "to-top.html" . -}}
+      {{ end}}
+  </div>
+  {{- partial "footer.html" . -}}
+{{ end }}

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+  <html lang="en-us" dir="ltr">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
+    
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+</head>
+
+  </head>
+  <body><div class="navtop-wrapper">
+  
+    <nav class="navtop">
+      
+        
+          <a href="/">Home</a>
+        
+      
+        
+          <a href="/samples/">Writing samples</a>
+        
+      
+        
+          <a href="/resume/">Resume</a>
+        
+      
+        
+          <a href="/about/">About</a>
+        
+      
+    </nav>
+  </div>
+
+  <div id="t-anch"></div>
+    <div class="content-wrapper">
+        
+        <div class="doc-container">
+          
+          <h1 class="doc-title">Endpoints</h1>
+          
+            <div class="publish-date"><p>Last update: December 18, 2025</p></div> 
+          
+            <h1 id="get-fare-estimate">Get Fare estimate</h1>
+<p><strong><code>1.1</code></strong></p>
+<p><code>POST</code> /fares</p>
+<p>Estimate the cost of a trip before submitting it.</p>
+<h3 id="request">Request</h3>
+<p><strong>Authorization</strong></p>
+<p>Bearer token with any relevant scope.</p>
+<p><br>
+<strong>Path params</strong></p>
+<p>none</p>
+<p><br>
+<strong>Query params</strong></p>
+<p>none</p>
+<p><br>
+<strong>Headers</strong></p>
+<ul>
+<li>Idempotency-Key (string) - Ensures the request is processed only once. required - <strong>yes</strong></li>
+</ul>
+<p><br>
+<strong>Body</strong></p>
+<ul>
+<li>
+<p><code>passenger_id</code> (string) - Passenger identifier. required - <strong>yes</strong></p>
+</li>
+<li>
+<p><code>pickup</code> (object) - Pickup point coordinates. required - <strong>yes</strong></p>
+<ul>
+<li><code>lat</code> (number|float) - Pickup point latitude. required - <strong>yes</strong></li>
+<li><code>long</code> (number|float) - Pickup point longitude. required - <strong>yes</strong></li>
+</ul>
+</li>
+<li>
+<p><code>dropoff</code> (object) - Dropoff point coordinates. required - <strong>yes</strong></p>
+<ul>
+<li><code>lat</code> (number|float) - Dropoff point latitude. required - <strong>yes</strong></li>
+<li><code>long</code> (number|float) - Dropoff point longitude. required - <strong>yes</strong></li>
+</ul>
+</li>
+<li>
+<p><code>coupon_id</code> (string) - ID of the Coupon to be used in Fare calculations. required - <strong>no</strong></p>
+</li>
+</ul>
+<p><br>
+<strong>Examples</strong></p>
+<p><em>curl</em></p>
+<pre tabindex="0"><code>curl -X POST &#34;https://sb-env.armadillo.pub/api/v1/fares&#34; \
+-H &#34;Authorization: Bearer MYaccesstoken123&#34; \
+-H &#34;Idempotency-Key: f8b3c7a2-9c5d-4e3b-8a4e-123456abcdef&#34; \
+-H &#34;Content-Type: application/json&#34; \
+-d &#39;{
+	&#34;passenger_id&#34;: &#34;P38475&#34;,
+	&#34;pickup&#34;: {	&#34;lat&#34;: 35.365730, &#34;long&#34;: -120.849863 },
+	&#34;dropoff&#34;: { &#34;lat&#34;: 35.359211, &#34;long&#34;: -120.846176 },
+	&#34;coupon_id&#34;: &#34;PRO9877GGT&#34;
+}&#39;
+</code></pre><p><br>
+<em>Node|Fetch</em></p>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#3e8fb0">import</span> <span style="color:#ea9a97">fetch</span> <span style="color:#ea9a97">from</span> <span style="color:#f6c177">&#39;node-fetch&#39;</span><span style="color:#908caa">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ea9a97">fetch</span><span style="color:#908caa">(</span><span style="color:#f6c177">&#39;https://sb-env.armadillo.pub/api/v1/fares&#39;</span><span style="color:#908caa">,</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">method</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;POST&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">headers</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Authorization&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;Bearer MYaccesstoken123&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Idempotency-Key&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;f8b3c7a2-9c5d-4e3b-8a4e-123456abcdef&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Content-Type&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;application/json&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6e6a86">// body: &#39;{\n\t&#34;passenger_id&#34;: &#34;P38475&#34;,\n\t&#34;pickup&#34;: {\t&#34;lat&#34;: 35.365730, &#34;long&#34;: -120.849863 },\n\t&#34;dropoff&#34;: { &#34;lat&#34;: 35.359211, &#34;long&#34;: -120.846176 },\n\t&#34;coupon_id&#34;: &#34;PRO9877GGT&#34;\n}&#39;,
+</span></span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">body</span><span style="color:#908caa">:</span> <span style="color:#ea9a97">JSON</span><span style="color:#908caa">.</span><span style="color:#ea9a97">stringify</span><span style="color:#908caa">({</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;passenger_id&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;P38475&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;pickup&#39;</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f6c177">&#39;lat&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">35.36573</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f6c177">&#39;long&#39;</span><span style="color:#908caa">:</span> <span style="color:#908caa">-</span><span style="color:#f6c177">120.849863</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;dropoff&#39;</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f6c177">&#39;lat&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">35.359211</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f6c177">&#39;long&#39;</span><span style="color:#908caa">:</span> <span style="color:#908caa">-</span><span style="color:#f6c177">120.846176</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;coupon_id&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;PRO9877GGT&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">})</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">});</span>
+</span></span></code></pre></div><h3 id="response">Response</h3>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6c177">201</span> <span style="color:#eb6f92">Created</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;fare_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;FAR88763&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;fare_status&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;created&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;fare_calc&#34;</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#ea9a97">&#34;base_amount&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">17.40</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#ea9a97">&#34;coupon_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;PRO9877GGT&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#ea9a97">&#34;discount_amount&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">7.00</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#ea9a97">&#34;final_amount&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">10.40</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#ea9a97">&#34;currency&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;ED&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;valid_til&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;2074-07-15T09:22:51Z&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p><code>fare_id</code> (string) - ID of the created Fare.</p>
+</li>
+<li>
+<p><code>fare_status</code> (string) - Status of the created Fare. Possible values:
+<code>created</code>, <code>rejected</code>, <code>initiated</code>, <code>released</code>, <code>processed</code>, <code>partial_refund</code>, <code>refunded</code>, <code>failed</code>. For more details on Fares, refer to Armadillo API glossary.</p>
+</li>
+<li>
+<p><code>fare_calc</code> (object) - Fare estimate calculation details.</p>
+<ul>
+<li><code>base_amount</code> (number|float) - Fare estimate without discounts.</li>
+<li><code>coupon_id</code> (string/null) - ID of the Coupon applied to the <code>base_amount</code>. Will be <code>null</code> if none.</li>
+<li><code>discount_amount</code> (number|float) - Actual amount removed by the applied Coupon, if any.</li>
+<li><code>final_amount</code> (number|float) - Final Fare estimate with the discounts. rounded according to the currency rounding rules, and sent to PSP for processing. must be ≥0. if &gt;0, must match the transaction_data.amount within the PSP precision tolerance of ±0.01.</li>
+<li><code>currency</code> (string) - Currency that the Fare estimate was calculated in.</li>
+</ul>
+</li>
+<li>
+<p><code>valid_til</code> (string) - Fare expiration timestamp, ISO 8601.</p>
+</li>
+</ul>
+<p><br>
+<strong>Errors</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Status</th>
+          <th>Message</th>
+          <th>Details</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;required fields missing&rdquo;</td>
+          <td>Request missing required fields. Include all required fields in the request and try again.</td>
+      </tr>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;malformed values&rdquo;</td>
+          <td>Request contains malformed data (coordinates, IDs, idempotency key, etc.). Ensure all values fit the relevant requirements and try again.</td>
+      </tr>
+      <tr>
+          <td>401</td>
+          <td>&ldquo;invalid token&rdquo;</td>
+          <td>Passed authorization token is missing, expired, or invalid.</td>
+      </tr>
+      <tr>
+          <td>403</td>
+          <td>&ldquo;forbidden&rdquo;</td>
+          <td>Passed <code>passenger_id</code> exists but is inactive or blocked from the requested action.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;target conflict&rdquo;</td>
+          <td>Idempotency-Key reused with a different payload.</td>
+      </tr>
+      <tr>
+          <td>422</td>
+          <td>&ldquo;invalid coordinates&rdquo;</td>
+          <td>Trip distance requirements not met (pickup and dropoff are outside the serviceable area). Make sure the provided coordinates are within the serviceable area and try again.</td>
+      </tr>
+      <tr>
+          <td>422</td>
+          <td>&ldquo;failed_coupon&rdquo;</td>
+          <td>Coupon was not applied due to one or more reasons: Coupon inactive or expired; Passenger not eligible.</td>
+      </tr>
+      <tr>
+          <td>500</td>
+          <td>&ldquo;internal server error&rdquo;</td>
+          <td>Internal error of unknown nature (uncaught exceptions, DB connection failures, etc.).</td>
+      </tr>
+      <tr>
+          <td>503</td>
+          <td>&ldquo;service unavailable&rdquo;</td>
+          <td>One or more services are not available (distance calculation, fare estimation, etc.). Refer to <code>https://status.armadillo.pub</code> and try again.</td>
+      </tr>
+  </tbody>
+</table>
+<h1 id="submit-trip">Submit Trip</h1>
+<p><strong><code>1.1</code></strong></p>
+<p><code>POST</code> /trips</p>
+<p>Submit a previously estimated trip as a Passenger.</p>
+<h3 id="request-1">Request</h3>
+<p><strong>Authorization</strong></p>
+<p>Bearer token with any relevant scope.</p>
+<p><br>
+<strong>Path params</strong></p>
+<p>none</p>
+<p><br>
+<strong>Query params</strong></p>
+<p>none</p>
+<p><br>
+<strong>Headers</strong></p>
+<ul>
+<li>Idempotency-Key (string) - Ensures the request is processed only once. required - <strong>yes</strong></li>
+</ul>
+<p><br>
+<strong>Body</strong></p>
+<ul>
+<li><code>passenger_id</code> (string) - Passenger identifier. required - <strong>yes</strong></li>
+<li><code>fare_id</code> (string) - ID of the associated Fare. required - <strong>yes</strong></li>
+</ul>
+<p><br>
+<strong>Examples</strong></p>
+<p><em>curl</em></p>
+<pre tabindex="0"><code>curl -X POST &#34;https://sb-env.armadillo.pub/api/v1/trips&#34; \
+-H &#34;Authorization: Bearer MYaccesstoken123&#34; \
+-H &#34;Idempotency-Key: f8b3c7a2-9c5d-4e3b-8a4e-123456abcdef&#34; \
+-H &#34;Content-Type: application/json&#34; \
+-d &#39;{
+	&#34;passenger_id&#34;: &#34;P38475&#34;,
+	&#34;fare_id&#34;: &#34;FAR88763&#34;
+}&#39;
+</code></pre><p><br>
+<em>Node|Fetch</em></p>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#3e8fb0">import</span> <span style="color:#ea9a97">fetch</span> <span style="color:#ea9a97">from</span> <span style="color:#f6c177">&#39;node-fetch&#39;</span><span style="color:#908caa">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ea9a97">fetch</span><span style="color:#908caa">(</span><span style="color:#f6c177">&#39;https://sb-env.armadillo.pub/api/v1/trips&#39;</span><span style="color:#908caa">,</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">method</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;POST&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">headers</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Authorization&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;Bearer MYaccesstoken123&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Idempotency-Key&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;f8b3c7a2-9c5d-4e3b-8a4e-123456abcdef&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Content-Type&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;application/json&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6e6a86">// body: &#39;{\n\t&#34;passenger_id&#34;: &#34;P38475&#34;,\n\t&#34;fare_id&#34;: &#34;FAR88763&#34;\n}&#39;,
+</span></span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">body</span><span style="color:#908caa">:</span> <span style="color:#ea9a97">JSON</span><span style="color:#908caa">.</span><span style="color:#ea9a97">stringify</span><span style="color:#908caa">({</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;passenger_id&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;P38475&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;fare_id&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;FAR88763&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">})</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">});</span>
+</span></span></code></pre></div><h3 id="responses">Responses</h3>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6c177">201</span> <span style="color:#eb6f92">Created</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;trip_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;T8-7354-15D&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;trip_status&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;submitted&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">}</span>
+</span></span></code></pre></div><ul>
+<li><code>trip_id</code> (string) - ID of the created Trip.</li>
+<li><code>trip_status</code> (string) - status of the created Trip.</li>
+</ul>
+<p><br>
+<strong>Errors</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Status</th>
+          <th>Message</th>
+          <th>Details</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;required fields missing&rdquo;</td>
+          <td>Request missing required fields. Include all required fields in the request and try again.</td>
+      </tr>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;malformed values&rdquo;</td>
+          <td>Request contains malformed data (coordinates, IDs, idempotency key, etc.). Ensure all values fit the relevant requirements and try again.</td>
+      </tr>
+      <tr>
+          <td>401</td>
+          <td>&ldquo;invalid token&rdquo;</td>
+          <td>Passed authorization token is missing, expired, or invalid.</td>
+      </tr>
+      <tr>
+          <td>403</td>
+          <td>&ldquo;forbidden&rdquo;</td>
+          <td>Passed <code>passenger_id</code> exists but is inactive or blocked from the requested action.</td>
+      </tr>
+      <tr>
+          <td>404</td>
+          <td>&ldquo;not found&rdquo;</td>
+          <td>Passed <code>passenger_id</code> or <code>fare_id</code> doesn&rsquo;t exist.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;target conflict&rdquo;</td>
+          <td>Idempotency-Key reused with a different payload.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;invalid fare state&rdquo;</td>
+          <td>Failed to associate Fare with the Trip. Fare is rejected, expired, linked to a different Passenger or Trip.</td>
+      </tr>
+      <tr>
+          <td>500</td>
+          <td>&ldquo;internal server error&rdquo;</td>
+          <td>Internal error of unknown nature (uncaught exceptions, DB connection failures, etc.).</td>
+      </tr>
+      <tr>
+          <td>503</td>
+          <td>&ldquo;service unavailable&rdquo;</td>
+          <td>One or more services are not available (trip matching, internal orchestration, etc.). Refer to <code>https://status.armadillo.pub</code> and try again.</td>
+      </tr>
+  </tbody>
+</table>
+<h1 id="accept-trip">Accept Trip</h1>
+<p><strong><code>1.1</code></strong></p>
+<p><code>PATCH</code> /trips/{trip_id}</p>
+<p>Accept a submitted Trip as a Driver.</p>
+<h3 id="request-2">Request</h3>
+<p><strong>Authorization</strong></p>
+<p>Bearer token with any relevant scope.</p>
+<p><br>
+<strong>Path params</strong></p>
+<ul>
+<li><code>trip_id</code> (string) - ID of the accepted Trip. required - <strong>yes</strong></li>
+</ul>
+<p><br>
+<strong>Query params</strong></p>
+<p>none</p>
+<p><br>
+<strong>Headers</strong></p>
+<ul>
+<li>Idempotency-Key (string) - Ensures the request is processed only once. required - <strong>yes</strong></li>
+</ul>
+<p><br>
+<strong>Body</strong></p>
+<ul>
+<li><code>driver_id</code> (string) - ID of the Driver accepting the Trip. required - <strong>yes</strong></li>
+</ul>
+<p><br>
+<strong>Examples</strong></p>
+<p><em>curl</em></p>
+<pre tabindex="0"><code>curl -X PATCH &#34;https://sb-env.armadillo.pub/api/v1/trips/T8-7354-15D&#34; \
+-H &#34;Authorization: Bearer MYauthorizationtoken123&#34; \
+-H &#34;Idempotency-Key: f8b3c7a2-9c5d-4e3b-8a4e-123456abcdef&#34; \
+-H &#34;Content-Type: application/json&#34; \
+-d &#39;{
+	&#34;driver_id&#34;: &#34;D10154&#34;
+}&#39;
+</code></pre><p><br>
+<em>Node|Fetch</em></p>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#3e8fb0">import</span> <span style="color:#ea9a97">fetch</span> <span style="color:#ea9a97">from</span> <span style="color:#f6c177">&#39;node-fetch&#39;</span><span style="color:#908caa">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ea9a97">fetch</span><span style="color:#908caa">(</span><span style="color:#f6c177">&#39;https://sb-env.armadillo.pub/api/v1/trips/T8-7354-15D&#39;</span><span style="color:#908caa">,</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">method</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;PATCH&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">headers</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Authorization&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;Bearer MYauthorizationtoken123&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Idempotency-Key&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;f8b3c7a2-9c5d-4e3b-8a4e-123456abcdef&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Content-Type&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;application/json&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6e6a86">// body: &#39;{\n\t&#34;driver_id&#34;: &#34;D10154&#34;\n}&#39;,
+</span></span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">body</span><span style="color:#908caa">:</span> <span style="color:#ea9a97">JSON</span><span style="color:#908caa">.</span><span style="color:#ea9a97">stringify</span><span style="color:#908caa">({</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;driver_id&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;D10154&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">})</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">});</span>
+</span></span></code></pre></div><h3 id="response-1">Response</h3>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6c177">200</span> <span style="color:#eb6f92">OK</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;trip_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;T8-7354-15D&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;trip_status&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;accepted&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;driver_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;D10154&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">}</span>
+</span></span></code></pre></div><ul>
+<li><code>trip_id</code> (string) - ID of the accepted Trip.</li>
+<li><code>trip_status</code> (string) - status of the accepted Trip.</li>
+<li><code>driver_id</code> (string) - ID of the Driver who accepted the Trip.</li>
+</ul>
+<p><br>
+<strong>Errors</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Status</th>
+          <th>Message</th>
+          <th>Details</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;required fields missing&rdquo;</td>
+          <td>Request missing required fields. Include all required fields in the request and try again.</td>
+      </tr>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;malformed values&rdquo;</td>
+          <td>Request contains malformed data (IDs, idempotency key, etc.). Ensure all values fit the relevant requirements and try again.</td>
+      </tr>
+      <tr>
+          <td>401</td>
+          <td>&ldquo;invalid token&rdquo;</td>
+          <td>Passed authorization token is missing, expired, or invalid.</td>
+      </tr>
+      <tr>
+          <td>403</td>
+          <td>&ldquo;forbidden&rdquo;</td>
+          <td>Passed <code>driver_id</code> exists but is inactive or blocked from the requested action.</td>
+      </tr>
+      <tr>
+          <td>404</td>
+          <td>&ldquo;not found&rdquo;</td>
+          <td>Passed <code>driver_id</code> or <code>trip_id</code> doesn&rsquo;t exist.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;target conflict&rdquo;</td>
+          <td>Idempotency-Key reused with a different payload.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;trip already accepted&rdquo;</td>
+          <td>Trip has been already accepted by a Driver, so it cannot be associated with the passed <code>driver_id</code>.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;trip canceled&rdquo;</td>
+          <td>Trip has been canceled, so it cannot be associated with the passed <code>driver_id</code>.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;trip closed&rdquo;</td>
+          <td>Trip has been closed, so it cannot be associated with the passed <code>driver_id</code>.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;cab unavailable&rdquo;</td>
+          <td>Cab associated with the <code>driver_id</code> is outside the service area or offline.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;driver busy&rdquo;</td>
+          <td>Passed <code>driver_id</code> is associated with another ongoing Trip. Close the ongoing Trip and try again.</td>
+      </tr>
+      <tr>
+          <td>500</td>
+          <td>&ldquo;internal server error&rdquo;</td>
+          <td>Internal error of unknown nature (uncaught exceptions, DB connection failures, etc.).</td>
+      </tr>
+      <tr>
+          <td>503</td>
+          <td>&ldquo;service unavailable&rdquo;</td>
+          <td>One or more services are not available (trip matching, internal orchestration, etc.). Refer to <code>https://status.armadillo.pub</code> and try again.</td>
+      </tr>
+  </tbody>
+</table>
+<h1 id="rate-trip">Rate Trip</h1>
+<p><strong><code>1.1</code></strong></p>
+<p><code>POST</code> /ratings</p>
+<p>Rate a &ldquo;closed&rdquo; Trip as a Passenger.</p>
+<h3 id="request-3">Request</h3>
+<p><strong>Authorization</strong></p>
+<p>Bearer token with any relevant scope.</p>
+<p><br>
+<strong>Path params</strong></p>
+<p>none</p>
+<p><br>
+<strong>Query params</strong></p>
+<p>none</p>
+<p><br>
+<strong>Headers</strong></p>
+<ul>
+<li>Idempotency-Key (string) - Ensures the request is processed only once. required - <strong>yes</strong></li>
+</ul>
+<p><br>
+<strong>Body</strong></p>
+<ul>
+<li><code>passenger_id</code> (string) - ID of the Passenger who rated the Trip. required - <strong>yes</strong></li>
+<li><code>trip_id</code> (string) - ID of the rated Trip. required - <strong>yes</strong></li>
+<li><code>rating_value</code> (string) - actual Trip rating. required - <strong>yes</strong></li>
+</ul>
+<p><br>
+<strong>Examples</strong></p>
+<p><em>curl</em></p>
+<pre tabindex="0"><code>curl -X POST &#34;https://sb-env.armadillo.pub/api/v1/ratings&#34; \
+-H &#34;Authorization: Bearer MYaccesstoken123&#34; \
+-H &#34;Idempotency-Key: f8b3c7a2-9c5d-4e3b-8a4e-123456abcdef&#34; \
+-H &#34;Content-Type: application/json&#34; \
+-d &#39;{
+	&#34;passenger_id&#34;: &#34;P38475&#34;,
+	&#34;trip_id&#34;: &#34;T8-7354-15D&#34;,
+	&#34;rating_value&#34;: 5
+}&#39;
+</code></pre><p><br>
+<em>Node|Fetch</em></p>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#3e8fb0">import</span> <span style="color:#ea9a97">fetch</span> <span style="color:#ea9a97">from</span> <span style="color:#f6c177">&#39;node-fetch&#39;</span><span style="color:#908caa">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ea9a97">fetch</span><span style="color:#908caa">(</span><span style="color:#f6c177">&#39;https://sb-env.armadillo.pub/api/v1/ratings&#39;</span><span style="color:#908caa">,</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">method</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;POST&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">headers</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Authorization&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;Bearer MYaccesstoken123&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Idempotency-Key&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;f8b3c7a2-9c5d-4e3b-8a4e-123456abcdef&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Content-Type&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;application/json&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6e6a86">// body: &#39;{\n\t&#34;passenger_id&#34;: &#34;P38475&#34;,\n\t&#34;trip_id&#34;: &#34;T8-7354-15D&#34;,\n\t&#34;rating_value&#34;: 5\n}&#39;,
+</span></span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">body</span><span style="color:#908caa">:</span> <span style="color:#ea9a97">JSON</span><span style="color:#908caa">.</span><span style="color:#ea9a97">stringify</span><span style="color:#908caa">({</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;passenger_id&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;P38475&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;trip_id&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;T8-7354-15D&#39;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;rating_value&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">5</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">})</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">});</span>
+</span></span></code></pre></div><h3 id="response-2">Response</h3>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6c177">201</span> <span style="color:#eb6f92">Created</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;rating_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;R21094&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;rating_status&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;accepted&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">}</span>
+</span></span></code></pre></div><ul>
+<li><code>rating_id</code> (string) - ID of the created Rating.</li>
+<li><code>rating_status</code> (string) - Status of the created Rating.</li>
+</ul>
+<p><br>
+<strong>Errors</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Status</th>
+          <th>Message</th>
+          <th>Details</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;required fields missing&rdquo;</td>
+          <td>Request missing required fields. Include all required fields in the request and try again.</td>
+      </tr>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;malformed values&rdquo;</td>
+          <td>Request contains malformed data (IDs, idempotency key, etc.). Ensure all values fit the relevant requirements and try again.</td>
+      </tr>
+      <tr>
+          <td>401</td>
+          <td>&ldquo;invalid token&rdquo;</td>
+          <td>Passed authorization token is missing, expired, or invalid.</td>
+      </tr>
+      <tr>
+          <td>403</td>
+          <td>&ldquo;forbidden&rdquo;</td>
+          <td>Passed <code>passenger_id</code> exists but is inactive or blocked from the requested action.<!-- raw HTML omitted --><!-- raw HTML omitted -->Passed <code>trip_id</code> is associated with different <code>passenger_id</code>.</td>
+      </tr>
+      <tr>
+          <td>404</td>
+          <td>&ldquo;not found&rdquo;</td>
+          <td>Passed <code>passenger_id</code> or <code>trip_id</code> doesn&rsquo;t exist.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;target conflict&rdquo;</td>
+          <td>Idempotency-Key reused with a different payload.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;invalid trip state&rdquo;</td>
+          <td>Possible reasons:<!-- raw HTML omitted -->- The Trip is not &ldquo;closed&rdquo; or has already been rated;<!-- raw HTML omitted -->- The Trip rating window expired.</td>
+      </tr>
+      <tr>
+          <td>500</td>
+          <td>&ldquo;internal server error&rdquo;</td>
+          <td>Internal error of unknown nature (uncaught exceptions, DB connection failures, etc.).</td>
+      </tr>
+      <tr>
+          <td>503</td>
+          <td>&ldquo;service unavailable&rdquo;</td>
+          <td>One or more services are not available (trip matching, internal orchestration, etc.). Refer to <code>https://status.armadillo.pub</code> and try again.</td>
+      </tr>
+  </tbody>
+</table>
+<h1 id="get-trips">Get Trips</h1>
+<p><strong><code>1.1</code></strong></p>
+<p><code>GET</code> /admin/trips</p>
+<p>Get Trip records as an Admin. Use optional filters to narrow down the results.</p>
+<h3 id="request-4">Request</h3>
+<p><strong>Authorization</strong></p>
+<p>Bearer token with <code>admin.read</code> scope or higher.</p>
+<p><br>
+<strong>Path params</strong></p>
+<p>none</p>
+<p><br>
+<strong>Query params</strong></p>
+<ul>
+<li><code>trip_id</code> (string) - Return a specific Trip. If specified, other filters are ignored. required - <strong>no</strong></li>
+<li><code>driver_id</code> (string) - Filter the response by Driver ID. required - <strong>no</strong></li>
+<li><code>cab_id</code> (string) - Filter the response by Cab ID. required - <strong>no</strong></li>
+<li><code>passenger_id</code> (string) - Filter the response by Passenger ID. required - <strong>no</strong></li>
+<li><code>trip_status</code> (string) - Filter the response by Trip status. required - <strong>no</strong></li>
+<li><code>created_from</code> (string) - Beginning of the date range to get Trips for. required - <strong>no</strong></li>
+<li><code>created_to</code> (string) - End of the date range to get Trips for. required - <strong>no</strong></li>
+<li><code>include</code> (string) - List related resources to include in the response. Separate by comma. Possible values: <code>driver</code>, <code>passenger</code>, <code>cab</code>, <code>fare</code>, <code>rating</code>. required - <strong>no</strong></li>
+<li><code>sort</code> (string) - Sort the items in the response by one or more parameters in ascending (<code>asc</code>) or descending (<code>desc</code>) order. Example values: <code>created_at:desc</code> (default), <code>driver_id:asc</code>. required - <strong>yes</strong></li>
+<li><code>limit</code> (integer) - Limit the number of items in the response. <code>50</code> by default, <code>200</code> max. required - <strong>no</strong></li>
+<li><code>cursor</code> (string) - Opaque pagination token that represents a position in a response set. If returned in a response, include it in the query <strong>as is</strong> to get the next page of results. Do not construct or modify the token manually. required - <strong>no</strong></li>
+</ul>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        Note:
+      
+    </p>
+    <ul>
+<li>Date range of a request may not exceed 31 days.</li>
+<li>The API may evolve toward a generic <code>filter</code> pattern in future iterations.</li>
+</ul>
+  </blockquote>
+<p><br>
+<strong>Headers</strong></p>
+<p>none</p>
+<p><br>
+<strong>Body</strong></p>
+<p>none</p>
+<p><br>
+<strong>Example</strong></p>
+<p><em>curl</em></p>
+<pre tabindex="0"><code>curl &#34;https://sb-env.armadillo.pub/api/v1/admin/trips?driver_id=D10154&amp;trip_status=closed&amp;created_from=2024-01-01T00:00:00Z&amp;created_to=2024-01-10T00:00:00Z&amp;include=passenger&amp;sort=created_at:desc&amp;limit=50&#34; \
+-H &#34;Authorization: Bearer MYaccesstoken123&#34;
+</code></pre><p><br>
+<em>Node|Fetch</em></p>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#3e8fb0">import</span> <span style="color:#ea9a97">fetch</span> <span style="color:#ea9a97">from</span> <span style="color:#f6c177">&#39;node-fetch&#39;</span><span style="color:#908caa">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ea9a97">fetch</span><span style="color:#908caa">(</span><span style="color:#f6c177">&#39;https://sb-env.armadillo.pub/api/v1/admin/trips?driver_id=D10154&amp;trip_status=closed&amp;created_from=2024-01-01T00:00:00Z&amp;created_to=2024-01-10T00:00:00Z&amp;include=passenger&amp;sort=created_at:desc&amp;limit=50&#39;</span><span style="color:#908caa">,</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ea9a97">headers</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f6c177">&#39;Authorization&#39;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#39;Bearer MYaccesstoken123&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#908caa">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">});</span>
+</span></span></code></pre></div><h3 id="response-3">Response</h3>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6c177">200</span> <span style="color:#eb6f92">OK</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;data&#34;</span><span style="color:#908caa">:</span> <span style="color:#908caa">[</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;trip_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;T8-7354-15D&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;driver_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;D10154&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;cab_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;C10186&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;passenger_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;P37475&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;passenger&#34;</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;passenger_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;P37475&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;passenger_status&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;active&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;first_name&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;Jane&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;last_name&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;Doe&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;joined_at&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;2074-07-15T09:17:51Z&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;trips_closed&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">18</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;passenger_rating&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">4.45</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;fare_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;FAR88763&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;trip_status&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;closed&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;trip_statuses&#34;</span><span style="color:#908caa">:</span> <span style="color:#908caa">[</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;status_name&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;submitted&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_at&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;2024-01-02T12:14:32Z&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_lat&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">35.365730</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_long&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">-120.849863</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;status_name&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;accepted&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_at&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;2024-01-02T12:16:05Z&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_lat&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">35.365730</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_long&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">-120.849863</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;status_name&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;at_pickup&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_at&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;2024-01-02T12:27:43Z&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_lat&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">35.365730</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_long&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">-120.849863</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;status_name&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;started&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_at&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;2024-01-02T12:29:02Z&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_lat&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">35.365730</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_long&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">-120.849863</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;status_name&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;at_drop&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_at&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;2024-01-02T12:50:22Z&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_lat&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">35.365730</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_long&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">-120.849863</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;status_name&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;closed&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_at&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;2024-01-02T12:52:37Z&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_lat&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">35.365730</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#ea9a97">&#34;set_long&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">-120.849863</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#908caa">}</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#908caa">],</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;distance&#34;</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;estimated&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">4.12</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;actual&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">4.12</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#908caa">},</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#ea9a97">&#34;rating&#34;</span><span style="color:#908caa">:</span> <span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#ea9a97">&#34;rating_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;R21094&#34;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#908caa">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#908caa">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#908caa">],</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;next_cursor&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;eyJjcmVhdGVkX2F0IjoiMjAyNC0wNS0xNVQxMDozMTo0MVoifQ==&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p><code>data</code> (array) - List of objects matching the request. Returns empty if no matching records found.</p>
+<ul>
+<li>
+<p><code>trip_id</code> (string) - ID of the Trip.</p>
+</li>
+<li>
+<p><code>driver_id</code> (string) - ID of the Driver associated with the Trip.</p>
+</li>
+<li>
+<p><code>cab_id</code> (string) - ID of the Cab associated with the Trip.</p>
+</li>
+<li>
+<p><code>passenger_id</code> (string) - ID of the Passenger associated with the Trip.</p>
+</li>
+<li>
+<p><code>passenger</code> (object) - <strong>Summary</strong> of the Passenger associated with the Trip. Included optionally via query filters.</p>
+<ul>
+<li><code>passenger_id</code> (string) - ID of the Passenger associated with the Trip.</li>
+<li><code>passenger_status</code> (string) - Status of the Passenger associated with the Trip. Possible values: <code>active</code>, <code>deactivated</code>.</li>
+<li><code>first_name</code> (string) - Passenger&rsquo;s first name.</li>
+<li><code>last_name</code> (string) - Passenger&rsquo;s last name.</li>
+<li><code>joined_at</code> (string) - Passenger&rsquo;s registration timestamp.</li>
+<li><code>trips_closed</code> (integer) - Total number of Trips the Passenger closed.</li>
+<li><code>passenger_rating</code> (number|float) - Passenger&rsquo;s rating among the Drivers.</li>
+</ul>
+</li>
+<li>
+<p><code>fare_id</code> (string) - ID of the Fare associated with the Trip.</p>
+</li>
+<li>
+<p><code>trip_status</code> (string) - Latest status assigned to the Trip. Possible values: <code>submitted</code>, <code>accepted</code>, <code>at_pickup</code>, <code>started</code>, <code>at_drop</code>, <code>closed</code>, <code>canceled</code>.</p>
+</li>
+<li>
+<p><code>trip_statuses</code> (array) - List of all statuses assigned to the Trip through its lifecycle.</p>
+<ul>
+<li><code>status_name</code> (string) - Status assigned to the Trip. Possible values: <code>submitted</code>, <code>accepted</code>, <code>at_pickup</code>, <code>started</code>, <code>at_drop</code>, <code>closed</code>, <code>canceled</code>.</li>
+<li><code>set_at</code> (string) - Status assignment timestamp.</li>
+<li><code>set_lat</code> (number|float) - Latitude of the the status assignment point.</li>
+<li><code>set_long</code> (number|float) - Longitude of the the status assignment point.</li>
+<li><code>canceled_by</code> (string) - Party that canceled the Trip. Present only if <code>data.trip_statuses.status_name</code> = <code>canceled</code>. Possible values: <code>system</code>, <code>passenger</code>, <code>driver</code>, <code>dispatch</code>.</li>
+<li><code>cancellation_reason</code> (string) - Reason for the Trip cancellation. Present only if <code>data.trip_statuses.status_name</code> = <code>canceled</code>. Timed out trips are closed automatically with reason <code>timeout</code>; manual cancellations must have a reason. Example values: <code>Low passenger rating</code>, <code>Cab stuck in traffic</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>distance</code> (object) - Data about Trip distance.</p>
+<ul>
+<li><code>estimated</code> (number|float) - Trip distance calculated from the difference between the set pickup and drop-off points.</li>
+<li><code>actual</code> (number|float) - Trip distance calculated from the difference between the pickup point and the coordinates where the Trip received <code>at_drop</code>, <code>closed</code>, or <code>canceled</code> status.</li>
+</ul>
+</li>
+<li>
+<p><code>rating</code> (object) - Data about the Trip rating.</p>
+<ul>
+<li><code>rating_id</code> (string) - ID of the Rating associated with the Trip.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>next_cursor</code> (string) - Pagination token. Present only if more matching records are available. Pass in the next query <strong>as is</strong> in <code>cursor</code> to get the next page of results. Do not construct or modify manually.</p>
+</li>
+</ul>
+<p><br>
+<strong>Errors</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Status</th>
+          <th>Message</th>
+          <th>Details</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;bad request&rdquo;</td>
+          <td>Conflicting or unsupported query parameters provided.</td>
+      </tr>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;malformed values&rdquo;</td>
+          <td>Request contains malformed data (IDs, timestamps, etc.). Ensure all values fit the relevant requirements and try again.</td>
+      </tr>
+      <tr>
+          <td>401</td>
+          <td>&ldquo;invalid token&rdquo;</td>
+          <td>Passed authorization token is missing, expired, or invalid.</td>
+      </tr>
+      <tr>
+          <td>403</td>
+          <td>&ldquo;forbidden&rdquo;</td>
+          <td>Passed authorization token is valid, but user lacks required scope or is blocked from executing this action.</td>
+      </tr>
+      <tr>
+          <td>422</td>
+          <td>&ldquo;unprocessable request&rdquo;</td>
+          <td>Request is logically impossible (e.g., date range is reversed).</td>
+      </tr>
+      <tr>
+          <td>429</td>
+          <td>&ldquo;too many requests&rdquo;</td>
+          <td>Rate limit exceeded. Wait a short period of time and try again. Repeated retries without delay may extend the request blocking.</td>
+      </tr>
+      <tr>
+          <td>500</td>
+          <td>&ldquo;internal server error&rdquo;</td>
+          <td>Internal error of unknown nature (uncaught exceptions, DB connection failures, etc.).</td>
+      </tr>
+      <tr>
+          <td>503</td>
+          <td>&ldquo;service unavailable&rdquo;</td>
+          <td>One or more services are not available. Refer to <code>https://status.armadillo.pub</code> and try again.</td>
+      </tr>
+  </tbody>
+</table>
+
+        </div>
+        <div class="c-3"><div id="navside">
+  
+  
+  </ul>
+  
+    <div class="navside-section">On this page</div>
+    <ul class="navside-list">
+      
+      
+      
+        
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#get-fare-estimate">Get Fare estimate</a></div>
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#submit-trip">Submit Trip</a></div>
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#accept-trip">Accept Trip</a></div>
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#rate-trip">Rate Trip</a></div>
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#get-trips">Get Trips</a></div>
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+      
+    
+  </ul>
+</div><div class="tt-w-1">
+    <div class="tt-w-2">
+        <div class="tt-bck-div"></div>
+        <a class="no-style" href="#t-anch"><button class="tt-b">to top</button></a>
+    </div>
+</div>
+        </div> 
+    </div><div id="footer-wrapper">
+    <div class="sm-buttons">
+        <div class="sm-b">
+            <a href="https://github.com/terriblewithnicknames/twsamples" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
+        </div>
+        <div class="sm-b">
+            <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/images/in-logo.png" height="25px"></a>
+        </div>
+    </div>
+</div></body>
+</html>

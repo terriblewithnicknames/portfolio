@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+  <html lang="en-us" dir="ltr">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
+    
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+</head>
+
+  </head>
+  <body><div class="navtop-wrapper">
+  
+    <nav class="navtop">
+      
+        
+          <a href="/">Home</a>
+        
+      
+        
+          <a href="/samples/">Writing samples</a>
+        
+      
+        
+          <a href="/resume/">Resume</a>
+        
+      
+        
+          <a href="/about/">About</a>
+        
+      
+    </nav>
+  </div>
+
+  <div id="t-anch"></div>
+    <div class="content-wrapper">
+        
+        <div class="doc-container">
+          
+          <h1 class="doc-title">Getting started</h1>
+          
+            <div class="publish-date"><p>Last update: December 15, 2025</p></div> 
+          
+            <p>The following guide is aimed to help Armadillo corporate employees get started with the Armadillo API Sandbox.</p>
+<h1 id="prerequisites">Prerequisites</h1>
+<p>To successfully follow this guide, you&rsquo;ll need:</p>
+<ul>
+<li>Fresh Armadillo account.</li>
+<li>Latest version of curl installed.</li>
+</ul>
+<h1 id="get-access">Get access</h1>
+<ol>
+<li>
+<p>Request Admin access for your newly created Armadillo account from the Armadillo Product team (request template ID NNT-1304). Along with the Admins permissions, the Product team will provide you with the user secret.</p>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        Never share your user secret with anyone.
+      
+    </p>
+    
+  </blockquote>
+</li>
+<li>
+<p>Having received your user secret, obtain your access token. To do that via curl, replace <code>USER_ID</code> and <code>USER_SECRET</code> in the below snippet with your encrypted credentials and send it:</p>
+<pre tabindex="0"><code>    curl -v -X POST &#34;https://sb-env.armadillo.pub/api/v1/oauth2/token&#34; \
+    -u &#34;USER_ID:USER_SECRET&#34; \
+    -H &#34;Content-Type: application/json&#34; \
+    -d &#34;grant_type=user_credentials&#34;
+</code></pre></li>
+<li>
+<p>Receive a response with the access token (<code>access_token</code>) and its TTL in minutes (<code>token_ttl</code>):</p>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ea9a97">&#34;access_token&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;ACESS_TOKEN&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ea9a97">&#34;token_type&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;Bearer&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ea9a97">&#34;user_id&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;USER_ID&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ea9a97">&#34;token_ttl&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">30</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ea9a97">&#34;created_at&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;ISO 8601 UTC TIMESTAMP&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">}</span>
+</span></span></code></pre></div>
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        Use the <code>access_token</code> with every API request. If the <code>access_token</code> expired, request a new one by repeating steps 2 and 3.
+      
+    </p>
+    
+  </blockquote>
+</li>
+</ol>
+<h1 id="send-test-request">Send test request</h1>
+<ol>
+<li>
+<p>Go to &ldquo;Get Trips&rdquo; endpoint.</p>
+</li>
+<li>
+<p>Follow examples to send a request.</p>
+</li>
+<li>
+<p>Check the response. If it&rsquo;s an error, refer to the &ldquo;Errors&rdquo; section of the endpoint or to Armadillo API overview &gt; Errors.</p>
+</li>
+</ol>
+
+        </div>
+        <div class="c-3"><div id="navside">
+  
+  
+    <div class="navside-section">On this page</div>
+    <ul class="navside-list">
+      
+      
+      
+        
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#prerequisites">Prerequisites</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#get-access">Get access</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#send-test-request">Send test request</a></div>
+  
+  
+
+      
+    
+  </ul>
+  
+  </ul>
+</div>
+        </div> 
+    </div><div id="footer-wrapper">
+    <div class="sm-buttons">
+        <div class="sm-b">
+            <a href="https://github.com/terriblewithnicknames/twsamples" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
+        </div>
+        <div class="sm-b">
+            <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/images/in-logo.png" height="25px"></a>
+        </div>
+    </div>
+</div></body>
+</html>

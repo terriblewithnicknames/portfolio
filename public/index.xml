@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My site</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on My site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Modelling a printable wheel for a scale car</title>
+      <link>http://localhost:1313/samples/guides/guide-1/</link>
+      <pubDate>Sun, 25 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/guides/guide-1/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Aftermarket wheels are one of the most common ways to make your scale car model stand out. While there are dozens of manufacturers of aftermarket parts and hundreds of detail-up kits, it is still easy to stumble upon cool real-world wheels that nobody sells in scale.&lt;/p&gt;&#xA;&lt;p&gt;Using a popular &lt;a href=&#34;https://www.work-wheels.co.jp/en/search/detail/98/&#34;&gt;Work Meister L1 3P 19 inch wheel&lt;/a&gt; as an example, I want this article to help scale car enthusiasts learn how to model wheels, moving from a reference picture to an STL file.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Glossary</title>
+      <link>http://localhost:1313/samples/apidocs/glossary/</link>
+      <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/apidocs/glossary/</guid>
+      <description>&lt;p&gt;Learn more about the terminology frequently used in Armadillo.&lt;/p&gt;&#xA;&lt;h1 id=&#34;f&#34;&gt;F&lt;/h1&gt;&#xA;&lt;h3 id=&#34;fare&#34;&gt;Fare&lt;/h3&gt;&#xA;&lt;p&gt;An estimated cost of the Trip. A Fare can exist without a submitted Trip and can expire if not accepted.&lt;/p&gt;&#xA;&lt;p&gt;Possible Fare statuses and their mapping to PSP transaction statuses:&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Fare status&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Mapped PSP statuses&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;created&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Fare is calculated and stored in the system.&lt;/td&gt;&#xA;          &lt;td&gt;n/a&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;rejected&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Fare estimate has been rejected by the Passenger.&lt;/td&gt;&#xA;          &lt;td&gt;n/a&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;initiated&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Fare estimate is sent to PSP for capturing.&lt;/td&gt;&#xA;          &lt;td&gt;“00: initiated”; “01: captured”; “03: processing”&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;released&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Previously authorized transaction associated with the Fare record has been released by PSP.&lt;/td&gt;&#xA;          &lt;td&gt;“02: released”&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;processed&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Transaction associated with the fare record has been processed by PSP.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;If &lt;code&gt;final_amount&lt;/code&gt; = “0” due to the applied coupon, the fare receives the “processed” &lt;code&gt;fare_status&lt;/code&gt; without sending anything to the PSP.&lt;/td&gt;&#xA;          &lt;td&gt;“04: success”&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;partial_refund&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;A fare has been partially refunded.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;If a fare has at least one “processed” refund and &lt;code&gt;refundable_total&lt;/code&gt; is &amp;gt;0 and &amp;lt; &lt;code&gt;final_amount&lt;/code&gt;, the &lt;code&gt;fare_status&lt;/code&gt; is “partial_refund” with the &lt;code&gt;status_msg&lt;/code&gt; = “20: partially_refunded”.&lt;/td&gt;&#xA;          &lt;td&gt;“20: partially_refunded”&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;refunded&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;A fare has been fully refunded.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;If a fare has at least one “processed” refund and &lt;code&gt;refundable_total&lt;/code&gt; is =0, the &lt;code&gt;fare_status&lt;/code&gt; is “refunded” with the &lt;code&gt;status_msg&lt;/code&gt; = “21: refunded”.&lt;/td&gt;&#xA;          &lt;td&gt;“21: refunded”&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;failed&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Transaction processing failed.&lt;/td&gt;&#xA;          &lt;td&gt;“10: failed_retrying”; “11: failed_blocked_by_bank”; “12: failed_no_funds”; “13: failed_canceled_by_client”; “14: failed_declined”&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h1 id=&#34;g&#34;&gt;G&lt;/h1&gt;&#xA;&lt;h3 id=&#34;group&#34;&gt;Group&lt;/h3&gt;&#xA;&lt;p&gt;Association of users gathered by one or multiple characteristics for admin-level segmentation and targeted actions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Endpoints</title>
+      <link>http://localhost:1313/samples/apidocs/endpoints/</link>
+      <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/apidocs/endpoints/</guid>
+      <description>&lt;h1 id=&#34;get-fare-estimate&#34;&gt;Get Fare estimate&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;&lt;code&gt;1.1&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;POST&lt;/code&gt; /fares&lt;/p&gt;&#xA;&lt;p&gt;Estimate the cost of a trip before submitting it.&lt;/p&gt;&#xA;&lt;h3 id=&#34;request&#34;&gt;Request&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Authorization&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Bearer token with any relevant scope.&lt;/p&gt;&#xA;&lt;p&gt;&lt;br&gt;&#xA;&lt;strong&gt;Path params&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;none&lt;/p&gt;&#xA;&lt;p&gt;&lt;br&gt;&#xA;&lt;strong&gt;Query params&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;none&lt;/p&gt;&#xA;&lt;p&gt;&lt;br&gt;&#xA;&lt;strong&gt;Headers&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Idempotency-Key (string) - Ensures the request is processed only once. required - &lt;strong&gt;yes&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;br&gt;&#xA;&lt;strong&gt;Body&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;passenger_id&lt;/code&gt; (string) - Passenger identifier. required - &lt;strong&gt;yes&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;pickup&lt;/code&gt; (object) - Pickup point coordinates. required - &lt;strong&gt;yes&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;lat&lt;/code&gt; (number|float) - Pickup point latitude. required - &lt;strong&gt;yes&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;long&lt;/code&gt; (number|float) - Pickup point longitude. required - &lt;strong&gt;yes&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;dropoff&lt;/code&gt; (object) - Dropoff point coordinates. required - &lt;strong&gt;yes&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Getting started</title>
+      <link>http://localhost:1313/samples/apidocs/getting-started/</link>
+      <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/apidocs/getting-started/</guid>
+      <description>&lt;p&gt;The following guide is aimed to help Armadillo corporate employees get started with the Armadillo API Sandbox.&lt;/p&gt;&#xA;&lt;h1 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h1&gt;&#xA;&lt;p&gt;To successfully follow this guide, you&amp;rsquo;ll need:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Fresh Armadillo account.&lt;/li&gt;&#xA;&lt;li&gt;Latest version of curl installed.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;get-access&#34;&gt;Get access&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Request Admin access for your newly created Armadillo account from the Armadillo Product team (request template ID NNT-1304). Along with the Admins permissions, the Product team will provide you with the user secret.&lt;/p&gt;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  &lt;blockquote class=&#34;alert alert-note&#34;&gt;&#xD;&#xA;    &lt;p class=&#34;alert-heading&#34;&gt;&#xD;&#xA;      ❗&#xD;&#xA;      &#xD;&#xA;        Never share your user secret with anyone.&#xD;&#xA;      &#xD;&#xA;    &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Armadillo Product overview</title>
+      <link>http://localhost:1313/samples/productdocs/product-overview/</link>
+      <pubDate>Fri, 05 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/productdocs/product-overview/</guid>
+      <description>&lt;h1 id=&#34;what-is-armadillo&#34;&gt;What is Armadillo&lt;/h1&gt;&#xA;&lt;p&gt;Armadillo is a fictional taxi service operating in a futuristic yet down-to-earth setting of Sprawl City. Unlike its AI-driven competitors, Armadillo functions in a more classic way, offering human drivers and app-like user experience.&lt;/p&gt;&#xA;&lt;h1 id=&#34;who-is-it-for&#34;&gt;Who is it for&lt;/h1&gt;&#xA;&lt;p&gt;Armadillo is for people who want to reduce the presence of AI and technology in their daily lives. Whether it is a simple lack of trust, nostalgia, craving for human connection, or personal trauma, Armadillo is there to move you from point A to point B in a reliable, human way. No ads, no subscription fees.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Armadillo API overview</title>
+      <link>http://localhost:1313/samples/apidocs/overview/</link>
+      <pubDate>Tue, 02 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/apidocs/overview/</guid>
+      <description>&lt;p&gt;API ver. &lt;code&gt;1.1&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;&#xA;&lt;p&gt;The Armadillo API uses HTTP for calls, REST for endpoints, and JSON for request and response bodies. Methods used: &lt;code&gt;POST&lt;/code&gt;, &lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;PATCH&lt;/code&gt;, &lt;code&gt;DELETE&lt;/code&gt;. Authentication is based on OAuth 2.0 tokens.&lt;/p&gt;&#xA;&lt;p&gt;The Armadillo API allows registered users to perform typical ride hailing actions via their client (mobile app): to call a cab as a passenger, to provide a cab as a driver.&lt;/p&gt;&#xA;&lt;h1 id=&#34;access-roles-and-scopes&#34;&gt;Access roles and scopes&lt;/h1&gt;&#xA;&lt;p&gt;Functionality is distributed to users through system roles. Recognized system roles and scopes (available functionality) are as follows:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I would&#39;ve mixed it better on analog</title>
+      <link>http://localhost:1313/samples/blog/blog-1/</link>
+      <pubDate>Sat, 15 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/samples/blog/blog-1/</guid>
+      <description>&lt;p&gt;The rapid evolution of technology allowed personal computers to gradually replace numerous task-specific machines, including those used in music production. As soon as it became possible, the concept of a recording studio got reimagined as a DAW (Digital Audio Workstation), packing almost all your fancy studio gear into a single shortcut on your computer screen. The ever-growing market of VST plugins saturated the picture even more, offering more virtual instruments and effects you knew existed. More often than not, musicians and producers began using state-of-the-art mixing consoles and gear racks as laptop stands.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;My name is Andrii, and this site is my technical writing portfolio. It contains writing samples that cover technical and conceptual topics with the sole purpose of demonstrating my professional skills.&lt;/p&gt;&#xA;&lt;h2 id=&#34;contents&#34;&gt;Contents&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Product documentation samples&lt;/li&gt;&#xA;&lt;li&gt;API reference sample docs&lt;/li&gt;&#xA;&lt;li&gt;How-to guides&lt;/li&gt;&#xA;&lt;li&gt;Blog posts&lt;/li&gt;&#xA;&lt;li&gt;My resume&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;permissions&#34;&gt;Permissions&lt;/h2&gt;&#xA;&lt;p&gt;This project is not intended for replication (e.g., forking, external contributions) or any commercial use. I appreciate it if you find the ideas, topics, referenced media, or any other content in this project educational or helpful. Just do not present my work, or the work of other creators referenced here, as your own.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Andrii Halkin. Technical writer</title>
+      <link>http://localhost:1313/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/</guid>
+      <description>&lt;h1 id=&#34;experience&#34;&gt;Experience&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Technical writer&lt;/strong&gt;&#xA;&lt;em&gt;@Brainstack (2024 - 2025)&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Created a billing glossary to standardize terminology across more than 50 internal&#xA;documents, helping reduce confusion in billing processes, and making it easier for&#xA;new team members to get up to speed with documentation.&lt;/li&gt;&#xA;&lt;li&gt;Contributed to the design of a robust internal support ticket system, helping a team of&#xA;60+ to track and resolve issues more efficiently.&lt;/li&gt;&#xA;&lt;li&gt;Led the reorganization of the team documentation space, making information easier&#xA;to find for 100+ colleagues and reducing support queries.&lt;/li&gt;&#xA;&lt;li&gt;Guided and mentored other writers, ensuring a consistent style and adherence to&#xA;documentation standards, which reduced content revisions by roughly 30%.&lt;/li&gt;&#xA;&lt;li&gt;Edited and prepared for publishing a RESTful API for a payment gateway, including&#xA;conceptual and reference documentation for 20+ endpoints, ensuring accuracy and&#xA;usability for developers.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;br&gt;&#xA;&lt;strong&gt;Technical writer&lt;/strong&gt;&#xA;&lt;em&gt;@Rallyware (2021 - 2024)&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

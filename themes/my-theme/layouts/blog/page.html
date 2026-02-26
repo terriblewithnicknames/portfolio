@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <div id="t-anch"></div>
+    <div class="content-wrapper">
+        {{ if .Params.Bread }}
+          {{ partial "breadcrumbs.html" }}
+        {{ end }}
+        <div class="doc-container">
+          <h1 class="doc-title">{{ .Params.Title }}</h1>
+          {{ if .Params.Date }}
+            <div class="publish-date"><p>Posted: {{ .Date.Format "January 2, 2006" }}</p></div> 
+          {{ end }}
+          {{ .Content }}
+        </div>
+        <div class="c-3">
+          {{- partial "navside.html" . -}}
+          {{ if .Params.Totop }}
+            {{- partial "to-top.html" . -}}
+          {{ end}}
+        </div> 
+    </div>
+  {{- partial "footer.html" . -}}
+{{ end }}

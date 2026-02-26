@@ -1,0 +1,8 @@
+{{ range .Headings }}
+  {{ if and (ge .Level site.Params.toc.startLevel)
+            (le .Level site.Params.toc.endLevel) }}
+    <div class="navside-item"><a class="toc-level-{{ .Level }}"
+            href="#{{ .ID }}">{{ .Title | htmlUnescape }}</a></div>
+  {{ end }}
+  {{ partial "toc_level.html" . }}
+{{ end }}

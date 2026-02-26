@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+  <html lang="en-us" dir="ltr">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
+    
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+</head>
+
+  </head>
+  <body><div class="navtop-wrapper">
+  
+    <nav class="navtop">
+      
+        
+          <a href="/">Home</a>
+        
+      
+        
+          <a href="/samples/">Writing samples</a>
+        
+      
+        
+          <a href="/resume/">Resume</a>
+        
+      
+        
+          <a href="/about/">About</a>
+        
+      
+    </nav>
+  </div>
+
+  <div id="t-anch"></div>
+    <div class="content-wrapper">
+        
+        <div class="doc-container">
+          
+          <h1 class="doc-title">Glossary</h1>
+          
+            <div class="publish-date"><p>Last update: January 6, 2026</p></div> 
+          
+            <p>Learn more about the terminology frequently used in Armadillo.</p>
+<h1 id="f">F</h1>
+<h3 id="fare">Fare</h3>
+<p>An estimated cost of the Trip. A Fare can exist without a submitted Trip and can expire if not accepted.</p>
+<p>Possible Fare statuses and their mapping to PSP transaction statuses:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Fare status</th>
+          <th>Description</th>
+          <th>Mapped PSP statuses</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>created</code></td>
+          <td>Fare is calculated and stored in the system.</td>
+          <td>n/a</td>
+      </tr>
+      <tr>
+          <td><code>rejected</code></td>
+          <td>Fare estimate has been rejected by the Passenger.</td>
+          <td>n/a</td>
+      </tr>
+      <tr>
+          <td><code>initiated</code></td>
+          <td>Fare estimate is sent to PSP for capturing.</td>
+          <td>“00: initiated”; “01: captured”; “03: processing”</td>
+      </tr>
+      <tr>
+          <td><code>released</code></td>
+          <td>Previously authorized transaction associated with the Fare record has been released by PSP.</td>
+          <td>“02: released”</td>
+      </tr>
+      <tr>
+          <td><code>processed</code></td>
+          <td>Transaction associated with the fare record has been processed by PSP.<!-- raw HTML omitted --><!-- raw HTML omitted -->If <code>final_amount</code> = “0” due to the applied coupon, the fare receives the “processed” <code>fare_status</code> without sending anything to the PSP.</td>
+          <td>“04: success”</td>
+      </tr>
+      <tr>
+          <td><code>partial_refund</code></td>
+          <td>A fare has been partially refunded.<!-- raw HTML omitted --><!-- raw HTML omitted -->If a fare has at least one “processed” refund and <code>refundable_total</code> is &gt;0 and &lt; <code>final_amount</code>, the <code>fare_status</code> is “partial_refund” with the <code>status_msg</code> = “20: partially_refunded”.</td>
+          <td>“20: partially_refunded”</td>
+      </tr>
+      <tr>
+          <td><code>refunded</code></td>
+          <td>A fare has been fully refunded.<!-- raw HTML omitted --><!-- raw HTML omitted -->If a fare has at least one “processed” refund and <code>refundable_total</code> is =0, the <code>fare_status</code> is “refunded” with the <code>status_msg</code> = “21: refunded”.</td>
+          <td>“21: refunded”</td>
+      </tr>
+      <tr>
+          <td><code>failed</code></td>
+          <td>Transaction processing failed.</td>
+          <td>“10: failed_retrying”; “11: failed_blocked_by_bank”; “12: failed_no_funds”; “13: failed_canceled_by_client”; “14: failed_declined”</td>
+      </tr>
+  </tbody>
+</table>
+<h1 id="g">G</h1>
+<h3 id="group">Group</h3>
+<p>Association of users gathered by one or multiple characteristics for admin-level segmentation and targeted actions.</p>
+<h1 id="i">I</h1>
+<h3 id="idempotency-key">Idempotency key</h3>
+<p>A unique client-generated identifier that ensures repeated requests with the same intent get processed only once.</p>
+<h1 id="p">P</h1>
+<h3 id="psp">PSP</h3>
+<p>Payment Service Provider (PSP) is a third-party service responsible for payment processing: authorization, capture, refund, etc.</p>
+<h1 id="r">R</h1>
+<h3 id="refund">Refund</h3>
+<p>A transaction returning previously charged funds to the customer. Refunds can be partial and full.</p>
+<p>Possible Refund statuses and their mapping to PSP transaction statuses:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Refund status</th>
+          <th>Description</th>
+          <th>Mapped PSP statuses</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>created</code></td>
+          <td>Refund transaction has been initiated.</td>
+          <td>“00: initiated”; “01: captured”; “03: processing”</td>
+      </tr>
+      <tr>
+          <td><code>processed</code></td>
+          <td>Refund transaction associated with the fare record has been processed by PSP.</td>
+          <td>“04: success”</td>
+      </tr>
+      <tr>
+          <td><code>failed</code></td>
+          <td>Transaction processing failed.</td>
+          <td>“10: failed_retrying”; “11: failed_blocked_by_bank”; “12: failed_no_funds”; “14: failed_declined”</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        Refunds cannot be canceled from the client&rsquo;s side.
+      
+    </p>
+    
+  </blockquote>
+<h1 id="s">S</h1>
+<h3 id="serviceable-area">Serviceable area</h3>
+<p>The geographic region that Trips can be estimated and executed within.</p>
+<h3 id="status-reference">Status reference</h3>
+<p>An ID of an internal thread, automatic email, or support ticket that explains, backs up, or provides context on the entity status in question.</p>
+<h1 id="t">T</h1>
+<h3 id="trip">Trip</h3>
+<p>An entity that represents the Passenger&rsquo;s ride request and its execution lifecycle, from submission to successful closure or cancellation.</p>
+<h3 id="trip-rating">Trip rating</h3>
+<p>A 1-5 star grade that a Passenger can leave to express how satisfied they are with the Trip. Trip rating can affect Driver rating.</p>
+<p>Unsatisfactory Trip rating triggers an automatic follow-up email asking the Passenger to elaborate on the rating they left. If the Passenger responds, the correspondence becomes a support ticket until the issue resolution.</p>
+<p>A Trip rating may transition through the following statuses:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Trip rating status</th>
+          <th>Description</th>
+          <th>Affects Driver rating?</th>
+          <th>Status reference</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>accepted</code></td>
+          <td>Default status.</td>
+          <td>yes</td>
+          <td>optional</td>
+      </tr>
+      <tr>
+          <td><code>disputed</code></td>
+          <td>Trip rating is being reviewed.</td>
+          <td>no</td>
+          <td>required</td>
+      </tr>
+      <tr>
+          <td><code>nullified</code></td>
+          <td>Trip rating has been disregarded.</td>
+          <td>no</td>
+          <td>required</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        A <code>disputed</code> or <code>nullified</code> Trip rating may return to the <code>accepted</code> status depending on the review outcome. Status reference is required in this case.
+      
+    </p>
+    
+  </blockquote>
+
+        </div>
+        <div class="c-3"><div id="navside">
+  
+  
+  </ul>
+  
+    <div class="navside-section">On this page</div>
+    <ul class="navside-list">
+      
+      
+      
+        
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#f">F</a></div>
+  
+  
+  
+  
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#g">G</a></div>
+  
+  
+  
+  
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#i">I</a></div>
+  
+  
+  
+  
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#p">P</a></div>
+  
+  
+  
+  
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#r">R</a></div>
+  
+  
+  
+  
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#s">S</a></div>
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#t">T</a></div>
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+      
+    
+  </ul>
+</div>
+        </div> 
+    </div><div id="footer-wrapper">
+    <div class="sm-buttons">
+        <div class="sm-b">
+            <a href="https://github.com/terriblewithnicknames/twsamples" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
+        </div>
+        <div class="sm-b">
+            <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/images/in-logo.png" height="25px"></a>
+        </div>
+    </div>
+</div></body>
+</html>

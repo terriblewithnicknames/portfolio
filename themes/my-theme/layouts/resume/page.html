@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <div id="t-anch"></div>
+    <div class="content-wrapper">
+        <div class="doc-container">
+          <h1>Summary</h1>
+          <p>Creative, resourceful technical writer with great communication skills, 5+ years of
+            experience documenting products and software systems, and a background in
+            Operations and Customer Service. Proficient in structuring documentation to meet
+            diverse company needs, demonstrating adaptability and versatility in crafting clear,
+            organized, and tailored content.</p>
+          {{- partial "resume-block-1.html" . -}}
+          {{ .Content }}
+        </div>
+        <div class="c-3">
+          {{ if .Params.Totop }}
+            {{- partial "to-top.html" . -}}
+          {{ end}}
+        </div> 
+    </div>
+  {{- partial "footer.html" . -}}
+{{ end }}

@@ -1,0 +1,55 @@
+baseURL = 'http://localhost:1313/'
+languageCode = 'en-us'
+theme = 'my-theme'
+title = "My site"
+
+
+[markup]
+    [markup.goldmark.renderHooks.image]
+    useEmbedded = 'fallback'
+
+    [markup.goldmark.renderHooks.link]
+    useEmbedded = 'fallback'
+
+    [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+    
+    [markup.highlight]
+        noClasses = true
+        style = "rose-pine-moon"
+        wrapperClass = "code-wrapper"
+
+[params]
+    [params.toc]
+        startLevel = 1
+        endLevel = 3
+    [params.toc2]
+        startLevel = 1
+        endLevel = 2
+
+[menus]
+  [[menus.footer]]
+    name = 'Legal'
+    pageRef = '/legal'
+    weight = 10
+  [[menus.footer]]
+    name = 'Privacy'
+    pageRef = '/privacy'
+    weight = 20
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = 'Writing samples'
+    pageRef = '/samples'
+    weight = 15
+  [[menus.main]]
+    name = 'Resume'
+    pageRef = '/resume'
+    weight = 35      
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 40    

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+  <html lang="en-us" dir="ltr">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
+    
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+</head>
+
+  </head>
+  <body><div class="navtop-wrapper">
+  
+    <nav class="navtop">
+      
+        
+          <a href="/">Home</a>
+        
+      
+        
+          <a href="/samples/">Writing samples</a>
+        
+      
+        
+          <a href="/resume/">Resume</a>
+        
+      
+        
+          <a href="/about/">About</a>
+        
+      
+    </nav>
+  </div>
+
+  <div id="t-anch"></div>
+    <div class="content-wrapper">
+        
+        <div class="doc-container">
+          
+          <h1 class="doc-title">Armadillo API overview</h1>
+          
+            <div class="publish-date"><p>Last update: December 2, 2025</p></div> 
+          
+            <p>API ver. <code>1.1</code></p>
+<h1 id="summary">Summary</h1>
+<p>The Armadillo API uses HTTP for calls, REST for endpoints, and JSON for request and response bodies. Methods used: <code>POST</code>, <code>GET</code>, <code>PATCH</code>, <code>DELETE</code>. Authentication is based on OAuth 2.0 tokens.</p>
+<p>The Armadillo API allows registered users to perform typical ride hailing actions via their client (mobile app): to call a cab as a passenger, to provide a cab as a driver.</p>
+<h1 id="access-roles-and-scopes">Access roles and scopes</h1>
+<p>Functionality is distributed to users through system roles. Recognized system roles and scopes (available functionality) are as follows:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Role</th>
+          <th>Scopes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Passenger</td>
+          <td>Get Fare estimates; submit, rate, cancel Trips.</td>
+      </tr>
+      <tr>
+          <td>Driver</td>
+          <td>Accept/decline, close Trips.</td>
+      </tr>
+      <tr>
+          <td>Admin</td>
+          <td>Issue and manage coupons; process trip ratings and user complaints; issue refunds; etc.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        A user can have one system role at a time.
+      
+    </p>
+    
+  </blockquote>
+<h1 id="data-types-and-formats">Data types and formats</h1>
+<p>The Armadillo API uses the following data types and formats:</p>
+
+
+
+  <blockquote class="alert alert-note">
+    <p class="alert-heading">
+      ❗
+      
+        Field names are case-sensitive.
+      
+    </p>
+    
+  </blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>Data type</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>string</td>
+          <td>String of UTF-8 characters. IDs are always unique and encrypted. Timestamps are always UTC ISO 8601 (e.g., <code>2074-07-15T09:17:51Z</code>), unless specified otherwise.</td>
+      </tr>
+      <tr>
+          <td>boolean</td>
+          <td>True/false variable. Possible values: <code>true</code>, <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td>float</td>
+          <td>Decimal numbers. Coordinates are always stored until 6 digits after decimal point. Distance is always in miles.</td>
+      </tr>
+      <tr>
+          <td>integer</td>
+          <td>Whole numbers.</td>
+      </tr>
+      <tr>
+          <td>object</td>
+          <td>Collection of &ldquo;key-value&rdquo; pairs.</td>
+      </tr>
+      <tr>
+          <td>array</td>
+          <td>Ordered list of values or objects.</td>
+      </tr>
+  </tbody>
+</table>
+<h1 id="versioning">Versioning</h1>
+<p>The Armadillo API uses semantic versioning: &ldquo;X.X.X&rdquo;, where:</p>
+<ul>
+<li><strong>X</strong>.x.x - major release version (breaking changes).</li>
+<li>x.<strong>X</strong>.x - minor release version (non-breaking changes).</li>
+<li>x.x.<strong>X</strong> - patch version (only fixes).</li>
+</ul>
+<h1 id="urls">URLs</h1>
+<ul>
+<li>Sandbox: <code>https://sb-env.armadillo.pub/api</code></li>
+<li>Production: <code>https://armadillo.pub/api</code></li>
+<li>Status page: <code>https://status.armadillo.pub</code></li>
+</ul>
+<h1 id="rate-limits">Rate limits</h1>
+<p>The Armadillo API can handle lots of requests. However, to ensure stable service provision and prevent abuse, rate limits may apply based on the traffic patterns, endpoint, and User account type. If a request hits the limit, API returns <code>429 &quot;too many requests&quot;</code>. In this case, clients should pause requests for some time as repeated retries without delay may extend the request blocking.</p>
+<h1 id="errors">Errors</h1>
+<p>Armadillo API errors follow the below model:</p>
+<div class="code-wrapper"><pre tabindex="0" style="color:#e0def4;background-color:#232136;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#908caa">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;message&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;ERROR_MESSAGE&#34;</span><span style="color:#908caa">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ea9a97">&#34;details&#34;</span><span style="color:#908caa">:</span> <span style="color:#f6c177">&#34;ERROR_DESCRIPTION&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#908caa">}</span>
+</span></span></code></pre></div><p>Possible endpoint-specific errors are listed in the description of the corresponding endpoint.</p>
+<p>Some of the common errors are:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Status</th>
+          <th>Message</th>
+          <th>Details</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>400</td>
+          <td>&ldquo;bad request&rdquo;</td>
+          <td>Malformed JSON or validation errors.</td>
+      </tr>
+      <tr>
+          <td>401</td>
+          <td>&ldquo;unauthorized&rdquo;</td>
+          <td>Missing or invalid auth token.</td>
+      </tr>
+      <tr>
+          <td>403</td>
+          <td>&ldquo;forbidden&rdquo;</td>
+          <td>User not allowed to execute the action.</td>
+      </tr>
+      <tr>
+          <td>404</td>
+          <td>&ldquo;not found&rdquo;</td>
+          <td>Target entities/records do not exist.</td>
+      </tr>
+      <tr>
+          <td>409</td>
+          <td>&ldquo;target conflict&rdquo;</td>
+          <td>Idempotency conflict.</td>
+      </tr>
+      <tr>
+          <td>422</td>
+          <td>&ldquo;unprocessable entity&rdquo;</td>
+          <td>Request is received but is logically invalid (e.g. pickup and dropoff coordinates valid, but point to the same location).</td>
+      </tr>
+      <tr>
+          <td>429</td>
+          <td>&ldquo;too many requests&rdquo;</td>
+          <td>Rate limit exceeded.</td>
+      </tr>
+      <tr>
+          <td>500</td>
+          <td>&ldquo;internal server error&rdquo;</td>
+          <td>Internal error of unknown nature (uncaught exceptions, DB connection failures, etc.).</td>
+      </tr>
+      <tr>
+          <td>503</td>
+          <td>&ldquo;service unavailable&rdquo;</td>
+          <td>One or more services involved in the request are not available (distance calculation, fare estimation, etc.). Refer to <code>https://status.armadillo.pub</code> and try again.</td>
+      </tr>
+  </tbody>
+</table>
+
+        </div>
+        <div class="c-3"><div id="navside">
+  
+  
+    <div class="navside-section">On this page</div>
+    <ul class="navside-list">
+      
+      
+      
+        
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#summary">Summary</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#access-roles-and-scopes">Access roles and scopes</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#data-types-and-formats">Data types and formats</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#versioning">Versioning</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#urls">URLs</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#rate-limits">Rate limits</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#errors">Errors</a></div>
+  
+  
+
+      
+    
+  </ul>
+  
+  </ul>
+</div>
+        </div> 
+    </div><div id="footer-wrapper">
+    <div class="sm-buttons">
+        <div class="sm-b">
+            <a href="https://github.com/terriblewithnicknames/twsamples" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
+        </div>
+        <div class="sm-b">
+            <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/images/in-logo.png" height="25px"></a>
+        </div>
+    </div>
+</div></body>
+</html>

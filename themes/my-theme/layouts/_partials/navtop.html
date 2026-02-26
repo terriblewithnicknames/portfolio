@@ -1,0 +1,13 @@
+<div class="navtop-wrapper">
+  {{ with site.Menus.main }}
+    <nav class="navtop">
+      {{ range . }}
+        {{ if $.IsMenuCurrent .Menu . }}
+          <a class="active" aria-current="page" href="{{ .URL }}">{{ .Name }}</a>
+        {{ else }}
+          <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+      {{ end }}
+    </nav>
+  </div>
+{{ end }}

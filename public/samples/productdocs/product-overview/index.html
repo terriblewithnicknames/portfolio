@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+  <html lang="en-us" dir="ltr">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
+    
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+</head>
+
+  </head>
+  <body><div class="navtop-wrapper">
+  
+    <nav class="navtop">
+      
+        
+          <a href="/">Home</a>
+        
+      
+        
+          <a href="/samples/">Writing samples</a>
+        
+      
+        
+          <a href="/resume/">Resume</a>
+        
+      
+        
+          <a href="/about/">About</a>
+        
+      
+    </nav>
+  </div>
+
+  <div id="t-anch"></div>
+    <div class="content-wrapper">
+        
+        <div class="doc-container">
+          
+          <h1 class="doc-title">Armadillo Product overview</h1>
+          
+            <div class="publish-date"><p>Last update: December 5, 2025</p></div> 
+          
+            <h1 id="what-is-armadillo">What is Armadillo</h1>
+<p>Armadillo is a fictional taxi service operating in a futuristic yet down-to-earth setting of Sprawl City. Unlike its AI-driven competitors, Armadillo functions in a more classic way, offering human drivers and app-like user experience.</p>
+<h1 id="who-is-it-for">Who is it for</h1>
+<p>Armadillo is for people who want to reduce the presence of AI and technology in their daily lives. Whether it is a simple lack of trust, nostalgia, craving for human connection, or personal trauma, Armadillo is there to move you from point A to point B in a reliable, human way. No ads, no subscription fees.</p>
+<p>As of now, Armadillo is available to registered residents and visitors of Sprawl City only within the city administrative borders. Expansion into neighboring regions is one of the company&rsquo;s long-term strategic goals.</p>
+<h2 id="user-roles">User roles</h2>
+<p>Armadillo functionality is available to users depending on their role.</p>
+<p>Users registered as Passengers can:</p>
+<ul>
+<li>book, rate, and cancel trips;</li>
+<li>select cabs of different tiers;</li>
+<li>use discount coupons;</li>
+<li>contact Armadillo customer support via email.</li>
+</ul>
+<p>Users registered as Drivers can:</p>
+<ul>
+<li>receive, review and accept/decline available trips;</li>
+<li>navigate to the pickup and drop-off points;</li>
+<li>close successfully completed trips.</li>
+</ul>
+<p>Admin users can:</p>
+<ul>
+<li>oversee the Armadillo operations;</li>
+<li>group passengers or drivers;</li>
+<li>issue and manage discount coupons;</li>
+<li>process trip ratings and passenger/driver complaints;</li>
+<li>issue partial or full refunds;
+etc.</li>
+</ul>
+<h1 id="how-it-works">How it works</h1>
+<h2 id="high-level-system-diagram">High-level system diagram</h2>
+<p>Here&rsquo;s a high-level diagram of the Armadillo&rsquo;s system:</p>
+<figure class="indoc-img"><img src="/samples/productdocs/product-overview/Armadillo_system_diagram.png"
+    alt="System diagram of Armadillo taxi service" width="100%">
+</figure>
+
+<p>Components:</p>
+<ul>
+<li><strong>Client</strong> - allows Passengers, Drivers, and Admins to interact with the system.</li>
+<li><strong>API</strong> - handles authentication, authorization, rate limits, routing, and communication between a client and microservices.</li>
+<li><strong>Microservices</strong> - do legwork: process API requests, read from or write to corresponding DBs, execute business logic, trigger webhooks and internal notifications, etc.</li>
+<li><strong>Server/DBs</strong> - stores actual data about defined internal resources.</li>
+<li><strong>3rd party PSP</strong> - processes payments (fares) and refunds.</li>
+</ul>
+<h2 id="core-resources">Core resources</h2>
+<p>The core resources of Armadillo are:</p>
+<ul>
+<li><strong>Cabs</strong> - company car fleet.</li>
+<li><strong>Passengers</strong> - profiles of users registered in the system as passengers.</li>
+<li><strong>Drivers</strong> - profiles of users registered in the system as drivers.</li>
+<li><strong>Groups</strong> - associations of users gathered by one or multiple characteristics for admin-level segmentation and targeted actions.</li>
+<li><strong>Fares</strong> - fare estimates and associated PSP transactions.</li>
+<li><strong>Trips</strong> - passenger trips created in the system.</li>
+<li><strong>Coupons</strong> - discount coupons issued for groups or individual passengers.</li>
+<li><strong>Refunds</strong> - records about fare refunds and associated PSP transactions.</li>
+<li><strong>Ratings</strong> - passenger trip ratings.</li>
+</ul>
+<h2 id="key-concepts">Key concepts</h2>
+<p>Some of the key concepts are:</p>
+<ul>
+<li>Trip lifecycle</li>
+<li>Fare estimation</li>
+<li>Route calculation</li>
+<li>Payment authorization and release</li>
+<li>Discount coupon issuance and management</li>
+<li>Partial and full refunds</li>
+<li>User segmentation and targeting</li>
+</ul>
+<h2 id="user-flow-examples">User flow examples</h2>
+<h3 id="trip-lifecycle">Trip lifecycle</h3>
+<p>Simplified:
+<figure class="indoc-img"><img src="/samples/productdocs/product-overview/Armadillo_trip_flow_simplified_v2.png"
+    alt="Diagram of a trip flow at Armadillo taxi service" width="100%">
+</figure>
+</p>
+<p>Detailed:</p>
+<ol start="0">
+<li>
+<p>A user downloads the Armadillo app and creates a passenger account.</p>
+</li>
+<li>
+<p>While in the main app view, a passenger sets the pickup and drop-off points on the map. This sends a POST request to the backend.</p>
+</li>
+<li>
+<p><code>/fares</code> receives and processes the request by calculating the fare, adding it to the &ldquo;Fares&rdquo; table along with other related details, and passing the response back to API.</p>
+</li>
+<li>
+<p>API returns the estimated fare to the passenger client, allowing the passenger to make further decisions.</p>
+</li>
+<li>
+<p>A passenger either accepts the fare and confirms the trip submission, or declines it by closing the trip submission form.</p>
+<ol>
+<li>
+<p>If a fare is declined, the flow ends here: <code>/fares</code> receives a POST request to change the <code>fare_status</code> to &ldquo;rejected&rdquo;. The <code>rejected</code> fare record will be automatically deleted after its TTL runs out.</p>
+</li>
+<li>
+<p>If a fare is accepted, the flow continues: <code>/fares</code> updates the <code>fare_status</code> to &ldquo;initiated&rdquo; and sends the fare to the 3rd party PSP for capturing; <code>/trips</code> creates a new entry in the &ldquo;Trips&rdquo; and links it to the previously accepted fare. The newly created trip status is &ldquo;submitted&rdquo;.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>&ldquo;Submitting&rdquo; a trip triggers the cab-to-passenger matching flow. Submitted trips form a pool and get offered to cabs located closest to the passenger. Eligible drivers receive corresponding notifications in their clients.</p>
+</li>
+<li>
+<p>A driver either accepts or declines the trip.</p>
+<ol>
+<li>
+<p>If a trip is not accepted/declined, it stays in the pool, while the matching flow keeps offering it to other drivers, from closest to farthest. If a trip has timed out or got canceled by the passenger, it gets removed from the pool and receives a &ldquo;canceled&rdquo; status via <code>/trips</code>. Any linked fares get released via <code>/fares</code>. The flow ends here.</p>
+</li>
+<li>
+<p>If a trip is accepted, the flow continues: <code>/trips</code> adds &ldquo;accepted&rdquo; status to the trip and passes pickup point details to the driver. Involved passenger and driver receive corresponding notifications.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Once the cab has arrived at the pickup, the driver confirms it in the client. This sends an API request to <code>/trips</code> to add &ldquo;at_pickup&rdquo; status to the trip; the set status triggers a corresponding notification to the passenger.</p>
+</li>
+<li>
+<p>Once the passenger is ready for departure, the driver starts the trip from their client. This sends an API request to <code>/trips</code> to add &ldquo;started&rdquo; status to the trip; the set status triggers a corresponding notification to the passenger.</p>
+</li>
+<li>
+<p>Once the cab has arrived at the trip destination, the cab coordinates match the destination point. This sends an API request to <code>/trips</code> to add &ldquo;at_drop&rdquo; status to the trip; the set status triggers corresponding notifications to the passenger and the driver.</p>
+</li>
+<li>
+<p>Once the trip has received the &ldquo;at_drop&rdquo; status, the passenger exits the cab; the driver confirms the successful trip completion from their client. This sends an API request to <code>/trips</code> to add &ldquo;closed&rdquo; status to the trip; the set status triggers corresponding notifications to the passenger and the driver.</p>
+</li>
+</ol>
+<h3 id="trip-rating">Trip rating</h3>
+<ol start="0">
+<li>
+<p>A passenger books and successfully finishes a trip.</p>
+</li>
+<li>
+<p>A successfully finished trip receives the &ldquo;closed&rdquo; status. This triggers the passenger client to present the passenger with the trip rating pop-up.</p>
+<ol>
+<li>
+<p>If the passenger doesn&rsquo;t want to rate the trip, they can either close the rating pop-up or let it get automatically dismissed after 30 min. Either way, the trip rating flow ends here.</p>
+</li>
+<li>
+<p>If the passenger wants to rate the trip, they leave the rating and confirm the action via the rating pop-up. This sends an API request to <code>/ratings</code> to create a new entry in the &ldquo;Rating&rdquo; table and return to the passenger client with the &ldquo;thank you&rdquo; message. The flow continues.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Further actions depend on the rating left:</p>
+<ol>
+<li>
+<p>Unsatisfactory ratings (3 stars or less) trigger Customer Care notifications and flows. Passenger receives an automatic email survey asking them to elaborate on their rating and provide additional feedback. If they respond to it, the email thread gets forwarded to CS department for further processing.</p>
+</li>
+<li>
+<p>Satisfactory ratings (4-5) do not trigger additional actions by default.</p>
+</li>
+</ol>
+</li>
+</ol>
+
+        </div>
+        <div class="c-3"><div id="navside">
+  
+  
+    <div class="navside-section">On this page</div>
+    <ul class="navside-list">
+      
+      
+      
+        
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#what-is-armadillo">What is Armadillo</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#who-is-it-for">Who is it for</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#user-roles">User roles</a></div>
+  
+  
+
+
+  
+    <div class="navside-item"><a class="toc-level-1"
+            href="#how-it-works">How it works</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#high-level-system-diagram">High-level system diagram</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#core-resources">Core resources</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#key-concepts">Key concepts</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-2"
+            href="#user-flow-examples">User flow examples</a></div>
+  
+  
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#trip-lifecycle">Trip lifecycle</a></div>
+  
+  
+
+  
+    <div class="navside-item"><a class="toc-level-3"
+            href="#trip-rating">Trip rating</a></div>
+  
+  
+
+
+
+      
+    
+  </ul>
+  
+  </ul>
+</div>
+        </div> 
+    </div><div id="footer-wrapper">
+    <div class="sm-buttons">
+        <div class="sm-b">
+            <a href="https://github.com/terriblewithnicknames/twsamples" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
+        </div>
+        <div class="sm-b">
+            <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/images/in-logo.png" height="25px"></a>
+        </div>
+    </div>
+</div></body>
+</html>
