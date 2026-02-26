@@ -449,10 +449,10 @@ fetch('https://sb-env.armadillo.pub/api/v1/ratings', {
 | 400    | "required fields missing" | Request missing required fields. Include all required fields in the request and try again.                                                              |
 | 400    | "malformed values"        | Request contains malformed data (IDs, idempotency key, etc.). Ensure all values fit the relevant requirements and try again.                            |
 | 401    | "invalid token"           | Passed authorization token is missing, expired, or invalid.                                                                                             |
-| 403    | "forbidden"               | Passed `passenger_id` exists but is inactive or blocked from the requested action.<br><br>Passed `trip_id` is associated with different `passenger_id`. |
+| 403    | "forbidden"               | Passed `passenger_id` exists but is inactive or blocked from the requested action. Passed `trip_id` is associated with different `passenger_id`. |
 | 404    | "not found"               | Passed `passenger_id` or `trip_id` doesn't exist.                                                                                                       |
 | 409    | "target conflict"         | Idempotency-Key reused with a different payload.                                                                                                        |
-| 409    | "invalid trip state"      | Possible reasons:<br>- The Trip is not "closed" or has already been rated;<br>- The Trip rating window expired.                                         |
+| 409    | "invalid trip state"      | Possible reasons: The Trip is not "closed" or has already been rated; The Trip rating window expired.                                         |
 | 500    | "internal server error"   | Internal error of unknown nature (uncaught exceptions, DB connection failures, etc.).                                                                   |
 | 503    | "service unavailable"     | One or more services are not available (trip matching, internal orchestration, etc.). Refer to `https://status.armadillo.pub` and try again.            |
 
