@@ -78,17 +78,17 @@
       </tr>
       <tr>
           <td><code>processed</code></td>
-          <td>Transaction associated with the fare record has been processed by PSP.<!-- raw HTML omitted --><!-- raw HTML omitted -->If <code>final_amount</code> = “0” due to the applied coupon, the fare receives the “processed” <code>fare_status</code> without sending anything to the PSP.</td>
+          <td>Transaction associated with the fare record has been processed by PSP. If <code>final_amount</code> = “0” due to the applied coupon, the fare receives the “processed” <code>fare_status</code> without sending anything to the PSP.</td>
           <td>“04: success”</td>
       </tr>
       <tr>
           <td><code>partial_refund</code></td>
-          <td>A fare has been partially refunded.<!-- raw HTML omitted --><!-- raw HTML omitted -->If a fare has at least one “processed” refund and <code>refundable_total</code> is &gt;0 and &lt; <code>final_amount</code>, the <code>fare_status</code> is “partial_refund” with the <code>status_msg</code> = “20: partially_refunded”.</td>
+          <td>A fare has been partially refunded. If a fare has at least one “processed” refund and <code>refundable_total</code> is &gt;0 and &lt; <code>final_amount</code>, the <code>fare_status</code> is “partial_refund” with the <code>status_msg</code> = “20: partially_refunded”.</td>
           <td>“20: partially_refunded”</td>
       </tr>
       <tr>
           <td><code>refunded</code></td>
-          <td>A fare has been fully refunded.<!-- raw HTML omitted --><!-- raw HTML omitted -->If a fare has at least one “processed” refund and <code>refundable_total</code> is =0, the <code>fare_status</code> is “refunded” with the <code>status_msg</code> = “21: refunded”.</td>
+          <td>A fare has been fully refunded. If a fare has at least one “processed” refund and <code>refundable_total</code> is =0, the <code>fare_status</code> is “refunded” with the <code>status_msg</code> = “21: refunded”.</td>
           <td>“21: refunded”</td>
       </tr>
       <tr>
@@ -314,7 +314,7 @@
     </div><div id="footer-wrapper">
     <div class="sm-buttons">
         <div class="sm-b">
-            <a href="https://github.com/terriblewithnicknames/twsamples" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
+            <a href="https://github.com/terriblewithnicknames" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
         </div>
         <div class="sm-b">
             <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/images/in-logo.png" height="25px"></a>
