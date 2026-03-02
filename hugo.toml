@@ -1,8 +1,11 @@
-baseURL = 'http://localhost:1313/'
+baseURL = 'http://terriblewithnicknames.github.io/portfolio/'
 languageCode = 'en-us'
 theme = 'my-theme'
-title = "My site"
+title = "My portfolio site"
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
 
 [markup]
     [markup.goldmark.renderHooks.image]
