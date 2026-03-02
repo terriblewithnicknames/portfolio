@@ -1,4 +1,4 @@
-baseURL = 'http://terriblewithnicknames.github.io/portfolio/'
+baseURL = 'https://terriblewithnicknames.github.io/portfolio/'
 languageCode = 'en-us'
 theme = 'my-theme'
 title = "My portfolio site"
