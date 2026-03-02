@@ -1,9 +1,9 @@
 <!DOCTYPE html>
   <html lang="en-us" dir="ltr">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/portfolio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=portfolio/livereload" data-no-instant defer></script>
     <head>
     
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/portfolio/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
@@ -15,19 +15,19 @@
     <nav class="navtop">
       
         
-          <a href="/">Home</a>
+          <a href="/portfolio/">Home</a>
         
       
         
-          <a href="/samples/">Writing samples</a>
+          <a href="/portfolio/samples/">Writing samples</a>
         
       
         
-          <a href="/resume/">Resume</a>
+          <a href="/portfolio/resume/">Resume</a>
         
       
         
-          <a href="/about/">About</a>
+          <a href="/portfolio/about/">About</a>
         
       
     </nav>
@@ -45,7 +45,7 @@
             <h1 id="introduction">Introduction</h1>
 <p>Aftermarket wheels are one of the most common ways to make your scale car model stand out. While there are dozens of manufacturers of aftermarket parts and hundreds of detail-up kits, it is still easy to stumble upon cool real-world wheels that nobody sells in scale.</p>
 <p>Using a popular <a href="https://www.work-wheels.co.jp/en/search/detail/98/">Work Meister L1 3P 19 inch wheel</a> as an example, I want this article to help scale car enthusiasts learn how to model wheels, moving from a reference picture to an STL file.</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_export_2.png"
     alt="A picture of the basic version of the model imported as an STL file into a slicer software" width="100%"><figcaption>
       <p><em>Final model (Basic, merged) - Front view</em></p>
     </figcaption>
@@ -146,7 +146,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </ul>
 <p>Be mentally prepared for your model not coming out perfect on the first try. Oftentimes, the sweet spot for the model&rsquo;s detail, fitment, and proportions is found through test prints. Test prints, printing defects, and other occasional hiccups are an <strong>essential</strong> part of 3D printing.</p>
 <p>A better understanding of real-world manufacturing practices will also help your models. The wheel chosen for this tutorial consists of 3 parts (hence &ldquo;3PIECE&rdquo; in the name). However, since scale allows for geometry simplification, we can disregard the non-functional parts of the wheel design and safely split the model into two parts: a <strong>disc</strong> and a <strong>barrel</strong>.</p>
-<figure class="indoc-img"><a href="https://apexwheels.com/blog/technical-discussion/3-piece-2-piece-and-1-piece-wheels-explained"><img src="/samples/guides/guide-1/tut_wheel_types.png"
+<figure class="indoc-img"><a href="https://apexwheels.com/blog/technical-discussion/3-piece-2-piece-and-1-piece-wheels-explained"><img src="/portfolio/samples/guides/guide-1/tut_wheel_types.png"
     alt="A picture of the common car wheel types" width="100%"></a><figcaption>
       <p><em>Common car wheel types (from left to right): 3-piece, 2-piece, Monoblock</em></p>
     </figcaption>
@@ -154,7 +154,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 
 <h2 id="find-references">Find references</h2>
 <p>To model an existing wheel, you will need a good reference picture of it in the right size and spec (the same wheel can come in different variants). Ideally, you want the wheel to be shot directly from the front. The less twisted the perspective, the better. Thankfully, the <a href="https://www.work-wheels.co.jp/en/search/detail/98/">official page</a> contains a lot of high-quality photos of the Meister L1 wheel we are about to model. Let&rsquo;s see what makes a good primary reference image.</p>
-<figure class="indoc-img"><a href="https://www.work-wheels.co.jp/img_save/main/58a513257fbfd.jpg"><img src="/samples/guides/guide-1/tut_ref_1.png"
+<figure class="indoc-img"><a href="https://www.work-wheels.co.jp/img_save/main/58a513257fbfd.jpg"><img src="/portfolio/samples/guides/guide-1/tut_ref_1.png"
     alt="An angled photo of the Work Meister L1 wheel on a car" width="100%"></a><figcaption>
       <p><em>Reference example 1</em></p>
     </figcaption>
@@ -163,7 +163,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 <p>Here, a wheel is clearly seen, and the image is high quality. Yet the angle of the shot makes it hard to determine the wheel size and accurately trace the geometry of the spoke pattern.</p>
 <p>At the same time, though, the picture shows the rim profile, revealing details that frontal shots hide. Is the disc face flat, concave, or convex? Where, how much. How deep the disc sits in the barrel. On top of that, live pictures like this can help you keep the model&rsquo;s overall resemblance to reality in check.</p>
 <p>With the above in mind, this is not the best candidate for a primary reference.</p>
-<figure class="indoc-img"><a href="https://www.work-wheels.co.jp/img_save/main/5805bdcbd7548.jpg"><img src="/samples/guides/guide-1/tut_ref_2.jpg"
+<figure class="indoc-img"><a href="https://www.work-wheels.co.jp/img_save/main/5805bdcbd7548.jpg"><img src="/portfolio/samples/guides/guide-1/tut_ref_2.jpg"
     alt="A frontal photo of the Work Meister L1 wheel" width="100%"></a><figcaption>
       <p><em>Reference example 2</em></p>
     </figcaption>
@@ -190,7 +190,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Expand the &ldquo;Grid&rdquo; section (3) and make sure the value is &ldquo;<strong>1 mm</strong>&rdquo;.</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_prep_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_prep_1.png"
 	    alt="A picture of the right sidebar in Plasticity" width="50%">
 	</figure>
 
@@ -216,7 +216,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Click the &ldquo;<a href="https://doc.plasticity.xyz/plasticity-essentials/file-menu">P-Menu</a>&rdquo; in the upper-left corner (1), then <strong>Import/Append</strong> (2). Alternatively, press <code>Ctrl+Shift+O</code>.</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_prep_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_prep_2.png"
 	    alt="A picture of the P-Menu in Plasticity" width="50%">
 	</figure>
 
@@ -248,7 +248,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 </ol>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_prep_4.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_prep_4.png"
     alt="A picture of the reference image imported into Plasticity" width="100%">
 </figure>
 </p>
@@ -276,7 +276,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
   </blockquote>
 <h2 id="sketching-disc-profile">Sketching disc profile</h2>
 <p>In this section, we will sketch the disc revolved profile. It represents the disc center hub, front face, spokes, side wall, and the mating face (a part where the disc and barrel touch).</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_final.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_p_final.png"
     alt="A right-view picture of the complete revolved profile of the disc in Plasticity" width="100%"><figcaption>
       <p><em>Complete revolved profile of the disc</em></p>
     </figcaption>
@@ -300,7 +300,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 <li>Above the outer edge of the mounting bolts ring.</li>
 </ul>
 <p>The line should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_p_1.png"
 	    alt="A top-view picture of the base front polyline in Plasticity" width="100%">
 	</figure>
 </p>
@@ -322,7 +322,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Move the control points of the created polyline along the Z axis:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_p_2.png"
 	    alt="A right-view picture of the base front polyline in Plasticity" width="100%">
 	</figure>
 </p>
@@ -344,7 +344,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 <li>
 <p>Select all the line segments that are left and join them.</p>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_3.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_p_3.png"
 	    alt="A right-view picture of the complete front polyline in Plasticity" width="100%">
 	</figure>
 </p>
@@ -377,7 +377,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 <li>Line 4(1)-5 - <strong>0.35 mm</strong>.</li>
 <li>Line 5(1)-6 - <strong>1.85 mm</strong>.</li>
 </ul>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_4.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_p_4.png"
 	    alt="A picture of the base rear polyline in Plasticity" width="100%">
 	</figure>
 
@@ -404,7 +404,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 <li>
 <p>Join the segments that are left and rename the line to &ldquo;Rear surface&rdquo;.</p>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_5.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_p_5.png"
 	    alt="A right-view picture of the complete rear polyline in Plasticity" width="100%">
 	</figure>
 </p>
@@ -418,7 +418,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Connect both ends of the polylines with straight lines to form a closed contour of the revolved profile:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_p_6.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_p_6.png"
 	    alt="A right-view picture of the connected halves of the disc profile in Plasticity" width="100%">
 	</figure>
 </p>
@@ -437,7 +437,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Pick a cutout in the reference image. Preferably, the one that an axis splits in half. On either of the spokes surrounding the cutout, find a straight edge. Mark it with a line:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_c_1.png"
 	    alt="A picture of the base spoke cutout line in Plasticity" width="100%">
 	</figure>
 </p>
@@ -447,7 +447,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Bridge two curves at vertices close to the center. Tweak the bridging curve so it matches the cutout edge in the reference:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_c_2.png"
 	    alt="A picture of the mirrored base spoke cutout lines in Plasticity" width="100%">
 	</figure>
 </p>
@@ -474,7 +474,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Bridge one of the straight lines with the created circle. Tweak the bridging curve so it stays close to the cutout edge in the reference:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_3.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_c_3.png"
 	    alt="A picture of the bridged base spoke cutout lines in Plasticity" width="100%">
 	</figure>
 </p>
@@ -502,7 +502,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 </ol>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_4.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_c_4.png"
     alt="A picture of the complete front spoke cutout curve in Plasticity" width="100%">
 </figure>
 </p>
@@ -514,7 +514,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Scale the &ldquo;Rear edge&rdquo; so that it follows the inner contour of the cutout in the reference image:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_c_5.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_c_5.png"
 	    alt="A picture of the complete rear spoke cutout curve in Plasticity" width="100%">
 	</figure>
 </p>
@@ -540,7 +540,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </ol>
 <h2 id="working-with-solid-bodies">Working with solid bodies</h2>
 <p>Let&rsquo;s transform sketches into the disc:</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_final_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_final_1.png"
     alt="A picture of the complete basic version of the disc in Plasticity" width="100%"><figcaption>
       <p><em>Complete disc (Basic version)</em></p>
     </figcaption>
@@ -562,7 +562,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 </ol>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_1.png"
     alt="A picture of the base disc solid in Plasticity" width="100%">
 </figure>
 </p>
@@ -628,7 +628,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
   </tbody>
 </table>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_2.png"
 	    alt="A picture of the base disc solid with spoke cutouts and fillets in Plasticity" width="100%">
 	</figure>
 </p>
@@ -656,7 +656,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
       </tr>
   </tbody>
 </table>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_3.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_3.png"
 	    alt="A picture of rear of the base disc solid in Plasticity, target edges highlighted" width="100%">
 	</figure>
 
@@ -723,7 +723,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
     
   </blockquote>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_4.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_4.png"
     alt="A picture of the base disc solid with spoke cutouts, fillets, and lug nut holes in Plasticity" width="100%">
 </figure>
 </p>
@@ -795,7 +795,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
     
   </blockquote>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_5.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_5.png"
     alt="A picture of the base disc solid with spoke cutouts, fillets, and lug nuts in Plasticity" width="100%">
 </figure>
 </p>
@@ -814,7 +814,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 </ol>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_final_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_final_1.png"
     alt="A picture of the complete basic version of the disc in Plasticity" width="100%">
 </figure>
 </p>
@@ -855,7 +855,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 </ol>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_7.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_7.png"
     alt="A close-up picture of the manufacturing stamps modeled on the disc in Plasticity" width="100%">
 </figure>
 </p>
@@ -869,7 +869,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>With the help of commands and techniques we used previously, sketch the cap profile and revolve it around the Z axis into a solid:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_cap_p_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_cap_p_1.png"
 	    alt="A picture of the complete center cap revolved profile in Plasticity" width="100%">
 	</figure>
 </p>
@@ -885,13 +885,13 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>While in the &ldquo;Top&rdquo; view, import the below primary reference image:</p>
-<figure class="indoc-img"><a href="https://www.jdmconcept.com.au/part/work/meister-center-cap"><img src="/samples/guides/guide-1/tut_cap_ref_1.png"
+<figure class="indoc-img"><a href="https://www.jdmconcept.com.au/part/work/meister-center-cap"><img src="/portfolio/samples/guides/guide-1/tut_cap_ref_1.png"
 	    alt="A frontal close-up photo of the Work Meister center cap" width="100%"></a><figcaption>
 	      <p><em>Center cap primary reference</em></p>
 	    </figcaption>
 	</figure>
 
-<figure class="indoc-img"><a href="https://www.workwheelsuk.com/work-s1r-m1r-m13p-centre-cap.html"><img src="/samples/guides/guide-1/tut_cap_ref_2.png"
+<figure class="indoc-img"><a href="https://www.workwheelsuk.com/work-s1r-m1r-m13p-centre-cap.html"><img src="/portfolio/samples/guides/guide-1/tut_cap_ref_2.png"
 	    alt="An angled close-up photo of the Work Meister center cap" width="100%"></a><figcaption>
 	      <p><em>Center cap secondary reference</em></p>
 	    </figcaption>
@@ -903,7 +903,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Recreate the &ldquo;MEISTER&rdquo; logo and the surrounding grooves with lines:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_cap_p_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_cap_p_2.png"
 	    alt="A picture of the center cap contours sketched in Plasticity" width="100%">
 	</figure>
 </p>
@@ -955,7 +955,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 </ol>
 <p>With all optional details added, the disc should look like this:</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_disc_s_final_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_disc_s_final_2.png"
     alt="A picture of the complete advanced version of the disc in Plasticity" width="100%"><figcaption>
       <p><em>Complete disc (Advanced version)</em></p>
     </figcaption>
@@ -982,7 +982,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
   </blockquote>
 <h2 id="sketching-barrel-profile">Sketching barrel profile</h2>
 <p>In this section, we will sketch the barrel revolved profile to transform it into a solid body later. This profile represents the inner and outer surfaces of the barrel, including the outer lip and the mating face (a part where the disc and barrel touch).</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_final.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_p_final.png"
     alt="A picture of the complete revolved profile of the barrel in Plasticity" width="100%"><figcaption>
       <p><em>Complete revolved profile of the barrel</em></p>
     </figcaption>
@@ -1009,7 +1009,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 <li>Line 7(1)-8 - <strong>7.6 mm</strong>.</li>
 </ul>
 <p>The line should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_p_1.png"
 	    alt="A picture of the base inner polyline of the barrel in Plasticity" width="100%">
 	</figure>
 </p>
@@ -1034,7 +1034,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 </ol>
 <p>The result should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_p_2.png"
     alt="A picture of the completed inner polyline of the barrel in Plasticity" width="100%">
 </figure>
 </p>
@@ -1052,7 +1052,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Connect both ends of the barrel surface polylines with straight lines to form a closed contour:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_3.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_p_3.png"
 	    alt="A right-view picture of the connected havles of the barrel profile in Plasticity" width="100%">
 	</figure>
 </p>
@@ -1062,7 +1062,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Move the &ldquo;Barrel profile&rdquo; polyline <strong>2 mm</strong> up on the Z axis so that the mating faces fit with <strong>0.1 mm</strong> clearance:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_p_4.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_p_4.png"
 	    alt="A right-view picture of the disc and barrel profiles fitting together in Plasticity" width="100%">
 	</figure>
 </p>
@@ -1070,7 +1070,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </ol>
 <h2 id="working-with-solid-bodies-1">Working with solid bodies</h2>
 <p>Let&rsquo;s transform sketches into the barrel:</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_final.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_s_final.png"
     alt="A picture of the complete barrel in Plasticity" width="100%"><figcaption>
       <p><em>Complete barrel</em></p>
     </figcaption>
@@ -1083,14 +1083,14 @@ The smaller the object, the less apparent its curvature appears to the human eye
 <li>Hide the &ldquo;Barrel profile&rdquo; polyline.</li>
 </ol>
 <p>The result should look like this:</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_s_1.png"
     alt="A right-view picture of the connected havles of the barrel profile in Plasticity" width="100%">
 </figure>
 
 <ol start="4">
 <li>
 <p>With the basic shape of the barrel complete, add <strong>G2</strong> fillets to the following outer lip edges:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_s_2.png"
 	    alt="A picture of the barrel in Plasticity with the target edges higlighted" width="100%">
 	</figure>
 </p>
@@ -1108,7 +1108,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Draw a reference line, connecting the inner and outer edges of the mounting bolts ring:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_3.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_s_3.png"
 	    alt="A close-up picture of the mounting bolts reference line in Plasticity" width="100%">
 	</figure>
 </p>
@@ -1142,7 +1142,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 </ol>
 <p>The bolt should look like this:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_4.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_s_4.png"
     alt="A close-up picture of the mounting bolt model in Plasticity" width="100%">
 </figure>
 </p>
@@ -1177,7 +1177,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
     
   </blockquote>
 <p>The result should look like this:</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_barrel_s_final.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_barrel_s_final.png"
     alt="A picture of the complete barrel in Plasticity" width="100%"><figcaption>
       <p><em>Complete barrel</em></p>
     </figcaption>
@@ -1193,7 +1193,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Close the gap between the duplicate solids using the &ldquo;Push&rdquo; or &ldquo;Match face&rdquo; command on their mating faces:
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_1.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_export_1.png"
 	    alt="A disc and barrel section in Plasticity with the clearance gap between them highlighted" width="100%">
 	</figure>
 </p>
@@ -1212,7 +1212,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 </li>
 <li>
 <p>Click the &ldquo;<a href="https://doc.plasticity.xyz/plasticity-essentials/file-menu">P-Menu</a>&rdquo; in the upper-left corner (1), then <strong>Export</strong> (2). Alternatively, press <code>Ctrl+Shift+E</code>.
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_prep_3.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_prep_3.png"
 	    alt="A picture of the P-Menu in Plasticity" width="50%">
 	</figure>
 </p>
@@ -1245,7 +1245,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
   </blockquote>
 <p>Now, let&rsquo;s import the STL file into a slicer and check the model for defects. Usually, the slicer will highlight any issues with geometry and notify you about them as soon as the model is imported.</p>
 <p>The model we created imported without any issues or alerts. The generated mesh doesn&rsquo;t have visible defects, overlaps, wrinkles, or overhang surfaces that need supports.</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_2.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_export_2.png"
     alt="A picture of the basic version of the model imported as an STL file into a slicer software" width="100%"><figcaption>
       <p><em>Final model (Basic, merged) - Front view</em></p>
     </figcaption>
@@ -1264,14 +1264,14 @@ The smaller the object, the less apparent its curvature appears to the human eye
     
   </blockquote>
 <p>On the back of the model, there are a couple of red areas - places where the model needs support to print properly. Depending on the disc complexity, even top spokes may require supports. In this case, though, the amount and placement of supported areas look acceptable.</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_3.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_export_3.png"
     alt="A picture of the basic version of the model imported as an STL file into a slicer software" width="100%"><figcaption>
       <p><em>Final model (Basic, merged) - Rear view</em></p>
     </figcaption>
 </figure>
 
 <p>The same steps apply if you export the wheel in parts:</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_4.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_export_4.png"
     alt="A picture of the advance version of the model imported as an STL file into a slicer software" width="100%"><figcaption>
       <p><em>Final model (Advanced, split) - Front view</em></p>
     </figcaption>
@@ -1279,7 +1279,7 @@ The smaller the object, the less apparent its curvature appears to the human eye
 
 <p>Once it is clear that the model has no issues at this stage, it is considered <strong>finished</strong> and ready for printing.</p>
 <p>Renders nicely too!</p>
-<figure class="indoc-img"><img src="/samples/guides/guide-1/tut_export_5.png"
+<figure class="indoc-img"><img src="/portfolio/samples/guides/guide-1/tut_export_5.png"
     alt="A picture of the complete model rendered in a 3D software" width="100%">
 </figure>
 
@@ -1507,10 +1507,10 @@ The smaller the object, the less apparent its curvature appears to the human eye
     </div><div id="footer-wrapper">
     <div class="sm-buttons">
         <div class="sm-b">
-            <a href="https://github.com/terriblewithnicknames" target="_blank" rel="noopener noreferrer"><img src="/images/gh-logo.png" height="21px"></a>
+            <a href="https://github.com/terriblewithnicknames" target="_blank" rel="noopener noreferrer"><img src="/portfolio/images/gh-logo.png" height="21px"></a>
         </div>
         <div class="sm-b">
-            <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/images/in-logo.png" height="25px"></a>
+            <a href="https://linkedin.com/in/andrii-halkin" target="_blank" rel="noopener noreferrer"><img src="/portfolio/images/in-logo.png" height="25px"></a>
         </div>
     </div>
 </div></body>
